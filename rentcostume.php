@@ -20,7 +20,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><i class="fa-solid fa-masks-theater"></i> Wypożyczalnia strojów </a>
+    <a class="navbar-brand" href="index.php"><i class="fa-solid fa-masks-theater"></i> Wypożyczalnia strojów </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,7 +29,7 @@
         <a class="nav-link px-lg-3" href="index.php">Strona główna</a>
         <a class="nav-link px-lg-3" href="#">Baza wypożyczeń</a>
         <a class="nav-link px-lg-3 active" href="#">Wypożycz</a>
-        <a class="nav-link px-lg-3" href="#">Dodaj strój</a>
+        <a class="nav-link px-lg-3" href="addcostume.php">Dodaj strój</a>
         <a class="nav-link px-lg-3" href="#">Logowanie</a>
     
       </div>

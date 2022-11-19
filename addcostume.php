@@ -18,7 +18,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><i class="fa-solid fa-masks-theater"></i> Wypożyczalnia strojów </a>
+    <a class="navbar-brand" href="index.php"><i class="fa-solid fa-masks-theater"></i> Wypożyczalnia strojów </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,7 +27,7 @@
         <a class="nav-link px-lg-3 " href="index.php">Strona główna</a>
         <a class="nav-link px-lg-3" href="#">Baza wypożyczeń</a>
         <a class="nav-link px-lg-3" href="rentcostume.php">Wypożycz</a>
-        <a class="nav-link px-lg-3 active" href="addcostume.php">Dodaj strój</a>
+        <a class="nav-link px-lg-3 active" href="#">Dodaj strój</a>
         <a class="nav-link px-lg-3" href="#">Logowanie</a>
 
       </div>
@@ -40,6 +40,78 @@
 </header>
 
 <main>
+<div class="container py-5 d-flex flex-column justify-content-center">
+  <h2>Dodawanie stroju do bazy </h2>
+  <form>
+    <div class="form-group py-1 ">
+      <label for="name">Nazwa stroju:</label>
+      <input type="name" class="form-control form-control-lg w-50 " id="name" placeholder="Wprowadź nazwę stroju">
+    </div>
+
+    
+  </form>
+
+  <!--Checkboxy rodzaj stroju-->
+  <label class="py-2">Rodzaj stroju:</label>
+  <div class="container py-1 d-flex flex-row">
+  <div class="form-check py-1 ">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+            Dziecięcy 
+        </label>
+
+    </div>
+    
+    <div class="form-check py-1 ml-5 ">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+            Dorośli 
+        </label>
+    </div>
+  </div>
+
+  <!-- Rozmiar stroju -->
+  <label class="py-2">Rozmiar stroju:</label>
+  <div class="container py-1 d-flex flex-row">
+  <div class="form-check py-1 ">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+            XS 
+        </label>
+
+    </div>
+    
+    <div class="form-check py-1">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+            S 
+        </label>
+    </div>
+    <div class="form-check py-1 ">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+            M 
+        </label>
+    </div>
+    <div class="form-check py-1 ">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+            L 
+        </label>
+    </div>
+    <div class="form-check py-1 ">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+            XL 
+        </label>
+    </div>
+
+  </div>
+
+
+  <!-- Przyciski-->
+  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Dodaj zdjęcie</button></div>
+  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Dodaj tag NFC</button></div>
 
 </main>
 <!-- JavaScript Bundle with Popper -->
