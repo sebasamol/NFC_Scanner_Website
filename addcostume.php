@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <meta name="viewport" content="width=device-width,initial-scale1.0">
-        <title>Wypożyczalnia strojów karnawałowych</title>
+        <title>Dodaj strój</title>
     
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -28,6 +28,7 @@
         <a class="nav-link px-lg-3" href="#">Baza wypożyczeń</a>
         <a class="nav-link px-lg-3" href="rentcostume.php">Wypożycz</a>
         <a class="nav-link px-lg-3 active" href="#">Dodaj strój</a>
+        <a class="nav-link px-lg-3" href="editcostume.php">Edytuj strój</a>
         <a class="nav-link px-lg-3" href="#">Logowanie</a>
 
       </div>
@@ -78,10 +79,14 @@
     
   </div>
 
-
+  <div class="form-floating py-2 w-50 ">
+      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+      <label for="floatingTextarea2">Informacje dodatkowe</label>
+    </div>
   <!-- Przyciski-->
   <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Dodaj zdjęcie</button></div>
   <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Dodaj tag NFC</button></div>
+  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Zatwierdź dane</button></div>
 
 </main>
 <!-- JavaScript Bundle with Popper -->

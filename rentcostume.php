@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang ="pl">
+
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
@@ -30,6 +31,7 @@
         <a class="nav-link px-lg-3" href="#">Baza wypożyczeń</a>
         <a class="nav-link px-lg-3 active" href="#">Wypożycz</a>
         <a class="nav-link px-lg-3" href="addcostume.php">Dodaj strój</a>
+        <a class="nav-link px-lg-3" href="addcostume.php">Edytuj strój</a>
         <a class="nav-link px-lg-3" href="#">Logowanie</a>
     
       </div>
@@ -64,6 +66,10 @@
     <div class="form-group py-1 ">
       <label for="adress">Kaucja:</label>
       <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź wartość kaucji za stroje">
+    </div>
+    <div class="form-floating py-2 w-50 ">
+      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+      <label for="floatingTextarea2">Informacje dodatkowe</label>
     </div>
 
   </form>
