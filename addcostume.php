@@ -24,10 +24,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
-        <a class="nav-link px-lg-3 active" href="index.php">Strona główna</a>
+        <a class="nav-link px-lg-3 " href="index.php">Strona główna</a>
         <a class="nav-link px-lg-3" href="#">Baza wypożyczeń</a>
         <a class="nav-link px-lg-3" href="rentcostume.php">Wypożycz</a>
-        <a class="nav-link px-lg-3" href="addcostume.php">Dodaj strój</a>
+        <a class="nav-link px-lg-3 active" href="addcostume.php">Dodaj strój</a>
         <a class="nav-link px-lg-3" href="#">Logowanie</a>
 
       </div>

@@ -42,26 +42,26 @@
  
 <main>
     <!-- Formularz-->
-<div class="container py-5">
+<div class="container py-5 d-flex flex-column justify-content-center">
   <h2>Dane wypożyczającego</h2>
   <form>
     <div class="form-group py-1 ">
       <label for="name">Imię:</label>
-      <input type="name" class="form-control form-control-lg w-50" id="name" placeholder="Wprowadź imię">
+      <input type="name" class="form-control form-control-lg w-50 " id="name" placeholder="Wprowadź imię">
     </div>
-    <div class="form-group py-1">
+    <div class="form-group py-1 ">
       <label for="last name">Nazwisko:</label>
       <input type="last name" class="form-control form-control-lg w-50" id="last name" placeholder="Wprowadź nazwisko">
     </div>
-    <div class="form-group py-1">
+    <div class="form-group py-1 ">
       <label for="adress">Adres zamieszkania:</label>
       <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź adres zamieszkania">
     </div>
-    <div class="form-group py-1">
+    <div class="form-group py-1 ">
       <label for="adress">Kwota wypożyczenia:</label>
       <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź wartość kwoty wypożyczenia">
     </div>
-    <div class="form-group py-1">
+    <div class="form-group py-1 ">
       <label for="adress">Kaucja:</label>
       <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź wartość kaucji za stroje">
     </div>
@@ -69,8 +69,6 @@
   </form>
 
   <!-- Przyciski-->
-
-  <div class="d-flex flex-column">
   <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Wybierz klienta z bazy</button></div>
   <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Wybierz termin wypożyczenia</button></div>
   <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Dodaj stroje</button></div>
