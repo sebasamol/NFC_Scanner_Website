@@ -54,58 +54,28 @@
   <!--Checkboxy rodzaj stroju-->
   <label class="py-2">Rodzaj stroju:</label>
   <div class="container py-1 d-flex flex-row">
-  <div class="form-check py-1 ">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-            Dziecięcy 
-        </label>
-
-    </div>
+    <select class="form-select w-50" aria-label="Default select example">
+        <option selected>Wybierz rodzaj stroju</option>
+        <option value="1">Dziecięcy</option>
+        <option value="2">Dorośli</option>
+    </select>
     
-    <div class="form-check py-1 ml-5 ">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-            Dorośli 
-        </label>
-    </div>
   </div>
 
   <!-- Rozmiar stroju -->
   <label class="py-2">Rozmiar stroju:</label>
   <div class="container py-1 d-flex flex-row">
-  <div class="form-check py-1 ">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-            XS 
-        </label>
+    <select class="form-select w-50" aria-label="Default select example">
+        <option selected>Wybierz rozmiar stroju</option>
+        <option value="1">XS</option>
+        <option value="2">S</option>
+        <option value="3">M</option>
+        <option value="4">L</option>
+        <option value="4">XL</option>
 
-    </div>
+
+    </select>
     
-    <div class="form-check py-1">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-            S 
-        </label>
-    </div>
-    <div class="form-check py-1 ">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-            M 
-        </label>
-    </div>
-    <div class="form-check py-1 ">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-            L 
-        </label>
-    </div>
-    <div class="form-check py-1 ">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-            XL 
-        </label>
-    </div>
-
   </div>
 
 
