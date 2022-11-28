@@ -1,5 +1,30 @@
 <!DOCTYPE html>
 <html lang ="pl">
+<?php
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:databasenfc.database.windows.net,1433; Database = databasenfc", "nfcadmin", "Kret5871#");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "nfcadmin", "pwd" => "Kret5871#", "Database" => "databasenfc", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:databasenfc.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+$sql = "CREATE TABLE MyGuests (
+  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  firstname VARCHAR(30) NOT NULL,
+  lastname VARCHAR(30) NOT NULL,
+  email VARCHAR(50),
+  reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  )";
+
+?>
+
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
@@ -15,6 +40,7 @@
         <script src="https://kit.fontawesome.com/abd674511e.js" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 sticky-top">
   <div class="container-fluid">
@@ -26,7 +52,7 @@
       <div class="navbar-nav ms-auto">
         <a class="nav-link px-lg-3 active" href="index.php">Strona główna</a>
         <a class="nav-link px-lg-3" href="#">Baza wypożyczeń</a>
-        <a class="nav-link px-lg-3" href="rentcostume.php">Wypożycz</a>
+        <a class="nav-link px-lg-3" href="rentcostume.php">Wypożycz strój</a>
         <a class="nav-link px-lg-3" href="addcostume.php">Dodaj strój</a>
         <a class="nav-link px-lg-3" href="editcostume.php">Edytuj strój</a>
         <a class="nav-link px-lg-3" href="#">Logowanie</a>
@@ -48,5 +74,6 @@
 integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
       
 </body>
+
 
 </html>

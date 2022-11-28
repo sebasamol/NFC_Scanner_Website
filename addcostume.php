@@ -26,7 +26,7 @@
       <div class="navbar-nav ms-auto">
         <a class="nav-link px-lg-3 " href="index.php">Strona główna</a>
         <a class="nav-link px-lg-3" href="#">Baza wypożyczeń</a>
-        <a class="nav-link px-lg-3" href="rentcostume.php">Wypożycz</a>
+        <a class="nav-link px-lg-3" href="rentcostume.php">Wypożycz strój</a>
         <a class="nav-link px-lg-3 active" href="#">Dodaj strój</a>
         <a class="nav-link px-lg-3" href="editcostume.php">Edytuj strój</a>
         <a class="nav-link px-lg-3" href="#">Logowanie</a>
