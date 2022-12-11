@@ -70,7 +70,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 <main>
     <!-- Formularz-->
 <div class="container py-5 d-flex flex-column justify-content-center">
-  <h2>Dane wypożyczającego</h2>
+  <h2>Dane klienta</h2>
   <form>
     <div class="form-group py-1 ">
       <label for="name">Imię:</label>

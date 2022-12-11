@@ -30,7 +30,7 @@
         <a class="nav-link px-lg-3" href="rentcostume.php">Wypożycz strój</a>
         <a class="nav-link px-lg-3" href="addcostume.php">Dodaj strój</a>
         <a class="nav-link px-lg-3" href="editcostume.php">Edytuj strój</a>
-        <a class="nav-link px-lg-3" href="#">Klienci</a>
+        <a class="nav-link px-lg-3" href="clients.php">Klienci</a>
         <a class="nav-link px-lg-3" href="#">Logowanie</a>
 
 
