@@ -1,3 +1,26 @@
+<?php
+//Zmienne do formularza
+$name = $surname = $address = $amount = $deposit = $info = '';
+$nameErr = $surnameErr = $addressErr = $amountErr = $depositErr = '';
+
+//Komunikacja z Azure 
+try {
+  $conn = new PDO("sqlsrv:server = tcp:databasenfc.database.windows.net,1433; Database = databasenfc", "nfcadmin", "Kret5871#");
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+  print("Error connecting to SQL Server.");
+  die(print_r($e));
+}
+
+
+$connectionInfo = array("UID" => "nfcadmin", "pwd" => "Kret5871#", "Database" => "databasenfc", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:databasenfc.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+
+
+
+?>
 <!DOCTYPE html>
 <html lang ="pl">
 
@@ -32,7 +55,9 @@
         <a class="nav-link px-lg-3 active" href="#">Wypożycz strój</a>
         <a class="nav-link px-lg-3" href="addcostume.php">Dodaj strój</a>
         <a class="nav-link px-lg-3" href="addcostume.php">Edytuj strój</a>
+        <a class="nav-link px-lg-3" href="clients.php">Klienci</a>
         <a class="nav-link px-lg-3" href="#">Logowanie</a>
+
     
       </div>
     </div>
