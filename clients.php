@@ -1,5 +1,8 @@
 <?php
-$name = $surname = $address = $number = '';
+$name = '';
+$surname = '';
+$address = '';
+$number = '';
 $nameErr = $surnameErr = $addressErr = $numberErr = '';
 
 // PHP Data Objects(PDO) Sample Code:
@@ -17,32 +20,63 @@ $connectionInfo = array("UID" => "nfcadmin", "pwd" => "Kret5871#", "Database" =>
 $serverName = "tcp:databasenfc.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-if(isset($_POST['submit'])){
-    if(empty($_POST['name'])){
-        $nameErr = 'Imię jest wymagane';
-    } else {
-        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
+if (isset($_POST['submit'])) {
 
-    if(empty($_POST['surname'])){
-        $surnameErr = 'Nazwisko jest wymagane';
-    } else {
-        $surname = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
+  if (empty($_POST['name'])) {
+    $nameErr = 'Imię jest wymagane';
+  } else {
+    $name = filter_input(
+      INPUT_POST,
+     'name',
+      FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    );
+  }
 
-    if(empty($_POST['address'])){
-        $addressErr = 'Adres jest wymagany';
-    } else {
-        $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
 
-    if(empty($_POST['number'])){
-        $numberErr = 'Numer telefonu jest wymagany';
-    } else {
-        $number = filter_input(INPUT_POST, 'number', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
+  if (empty($_POST['surname'])) {
+    $surnameErr = 'Nazwisko jest wymagane';
+  } else {
+    $surname = filter_input(
+    INPUT_POST,
+      'surname',
+    FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    );
+  }
+  if (empty($_POST['address'])) {
+    $addressErr = 'Adres jest wymagany';
+  } else {
+    $address = filter_input(
+    INPUT_POST,
+      'address',
+    FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    );
+  }
+
+  if (empty($_POST['number'])) {
+    $numberErr = 'Numer telefonu jest wymagany';
+  } else {
+    $number = filter_input(
+    INPUT_POST,
+      'number',
+    FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    );
+  }
+  
+
+  if (empty($nameErr) && empty($surnameErr) && empty($addressErr) && empty($numberErr)) {
+    $tsql = "INSERT INTO Clients (FirstName, LastName, Address, Number) VALUES ('$name', '$surname', '$address', '$number')";
+    $getResults= sqlsrv_query($conn, $tsql);
+    
+    
+    
+  }
+
 
 }
+  
+
+    
+
 
 
 ?>
@@ -94,32 +128,34 @@ if(isset($_POST['submit'])){
 
 <main>
 
-  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" class="container py-5 d-flex flex-column justify-content-center">
+  <form method="POST" action="<?php echo htmlspecialchars(
+      $_SERVER['PHP_SELF']
+    ); ?>"  class="container py-5 d-flex flex-column justify-content-center">
   <h2>Dane klienta</h2>
     <div class="mb-3">
-      <label for="name">Imię:</label>
-      <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź imię">
+      <label for="name" class="form-label">Imię:</label>
+      <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź imię" >
       <div class="invalid-feedback">
         <?php echo $nameErr; ?>
       </div>
     </div>
     <div class="mb-3">
-      <label for="surname">Nazwisko:</label>
-      <input type="text" class="form-control <?php echo !$surnameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="surname" placeholder="Wprowadź nazwisko">
+      <label for="surname" class="form-label">Nazwisko:</label>
+      <input type="text" class="form-control <?php echo !$surnameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="surname" name="surname"placeholder="Wprowadź nazwisko" ">
       <div class="invalid-feedback">
         <?php echo $surnameErr; ?>
       </div>
     </div>
     <div class="mb-3">
-      <label for="adress">Adres zamieszkania:</label>
-      <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="adress" placeholder="Wprowadź adres zamieszkania">
+      <label for="address" class="form-label">Adres zamieszkania:</label>
+      <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
       <div class="invalid-feedback">
         <?php echo $addressErr; ?>
       </div>
     </div>
     <div class="mb-3">
-      <label for="number">Numer telefonu:</label>
-      <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="number" placeholder="Wprowadź numer telefonu">
+      <label for="number" class="form-label">Numer telefonu:</label>
+      <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="number" name="number" placeholder="Wprowadź numer telefonu " >
       <div class="invalid-feedback">
         <?php echo $numberErr; ?>
       </div>
