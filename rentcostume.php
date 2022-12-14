@@ -39,7 +39,21 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
         <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/abd674511e.js" crossorigin="anonymous"></script>
-
+        <!--My script -->
+        <!--Date range picker -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        <script>
+        $(function() {
+          $('input[name="daterange"]').daterangepicker({
+            opens: 'left'
+          }, function(start, end, label) {
+            console.log("A new date selection was made: " + start.format('MM-DD-YYYY') + ' to ' + end.format('MM-DD-YYYY'));
+          });
+        });
+        </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 sticky-top">
@@ -69,49 +83,79 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
  
 <main>
     <!-- Formularz-->
-<div class="container py-5 d-flex flex-column justify-content-center">
-  <h2>Dane klienta</h2>
-  <form>
-    <div class="form-group py-1 ">
-      <label for="name">Imię:</label>
-      <input type="name" class="form-control form-control-lg w-50 " id="name" placeholder="Wprowadź imię">
+    <form method="POST" action="<?php echo htmlspecialchars(
+      $_SERVER['PHP_SELF']
+    ); ?>"  class="container py-5 d-flex flex-column justify-content-center">
+  <h2>Wypożyczanie stroju</h2>
+    <div class="mb-3">
+      <label for="name" class="form-label">Imię:</label>
+      <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź imię" >
+      <div class="invalid-feedback">
+        <?php echo $nameErr; ?>
+      </div>
     </div>
-    <div class="form-group py-1 ">
-      <label for="last name">Nazwisko:</label>
-      <input type="last name" class="form-control form-control-lg w-50" id="last name" placeholder="Wprowadź nazwisko">
+    <div class="mb-3">
+      <label for="surname" class="form-label">Nazwisko:</label>
+      <input type="text" class="form-control <?php echo !$surnameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="surname" name="surname"placeholder="Wprowadź nazwisko" ">
+      <div class="invalid-feedback">
+        <?php echo $surnameErr; ?>
+      </div>
     </div>
-    <div class="form-group py-1 ">
-      <label for="adress">Adres zamieszkania:</label>
-      <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź adres zamieszkania">
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Adres zamieszkania:</label>
+      <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
+      <div class="invalid-feedback">
+        <?php echo $addressErr; ?>
+      </div>
     </div>
-    <div class="form-group py-1 ">
-      <label for="adress">Kwota wypożyczenia:</label>
-      <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź wartość kwoty wypożyczenia">
+
+    <div class="mb-3">
+      <label for="number" class="form-label">Numer telefonu:</label>
+      <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="number" name="number" placeholder="Wprowadź numer telefonu " >
+      <div class="invalid-feedback">
+        <?php echo $numberErr; ?>
+      </div>
     </div>
-    <div class="form-group py-1 ">
-      <label for="adress">Kaucja:</label>
-      <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź wartość kaucji za stroje">
+
+
+    <div class="mb-3">
+    <label for="number" class="form-label">Wybierz termin wypożyczenia:</label>
+    <input type="text" class ="form-control form-control-lg w-50" name="daterange" value="Termin wypożyczenia" />
     </div>
-    <div class="form-floating py-2 w-50 ">
-      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-      <label for="floatingTextarea2">Informacje dodatkowe</label>
+
+    <div class="mb-3">
+      <label for="number" class="form-label">Kwota wypożyczenia:</label>
+      <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="number" name="number" placeholder="Wprowadź numer telefonu " >
+      <div class="invalid-feedback">
+        <?php echo $numberErr; ?>
+      </div>
     </div>
+    <div class="mb-3">
+      <label for="number" class="form-label">Kaucja:</label>
+      <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="number" name="number" placeholder="Wprowadź numer telefonu " >
+      <div class="invalid-feedback">
+        <?php echo $numberErr; ?>
+      </div>
+    </div>
+    <div class="mb-3 w-50">
+      <label for="exampleFormControlTextarea1" class="form-label " >Informacje dodatkowe:</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+    </div>
+    <div class="mb-3">
+        <input type="submit" name="submit" value="Wybierz klienta z bazy" class="btn btn-primary btn-block btn-lg w-50">
+    </div>
+    <div class="mb-3">
+        <input type="submit" name="submit" value="Dodaj stroje" class="btn btn-primary btn-block btn-lg w-50">
+    </div>
+    <div class="mb-3">
+        <input type="submit" name="submit" value="Zatwierdź i generuj umowę" class="btn btn-primary btn-block btn-lg w-50">
+    </div>
+
+    
+    
 
   </form>
-
-  <!-- Przyciski-->
-  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Wybierz klienta z bazy</button></div>
-  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Wybierz termin wypożyczenia</button></div>
-  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Dodaj stroje</button></div>
-  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Zatwierdź i generuj umowę</button></div>
-</div>
-  
-  
-
-
-
-
-</div>
     
     
 

@@ -43,35 +43,7 @@
 </header>
 
 <main>
-<div class="container py-5 d-flex flex-column justify-content-center">
-  <h2>Dane wypożyczającego</h2>
-  <form>
-    <div class="form-group py-1 ">
-      <label for="name">Imię:</label>
-      <input type="name" class="form-control form-control-lg w-50 " id="name" placeholder="Wprowadź imię">
-    </div>
-    <div class="form-group py-1 ">
-      <label for="last name">Nazwisko:</label>
-      <input type="last name" class="form-control form-control-lg w-50" id="last name" placeholder="Wprowadź nazwisko">
-    </div>
-    <div class="form-group py-1 ">
-      <label for="adress">Adres zamieszkania:</label>
-      <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź adres zamieszkania">
-    </div>
-    <div class="form-group py-1 ">
-      <label for="adress">Kwota wypożyczenia:</label>
-      <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź wartość kwoty wypożyczenia">
-    </div>
-    <div class="form-group py-1 ">
-      <label for="adress">Kaucja:</label>
-      <input type="address" class="form-control form-control-lg w-50" id="adress" placeholder="Wprowadź wartość kaucji za stroje">
-    </div>
-    <div class="form-floating py-2 w-50 ">
-      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-      <label for="floatingTextarea2">Informacje dodatkowe</label>
-    </div>
 
-  </form>
 </main>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
