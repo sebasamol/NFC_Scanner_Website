@@ -1,7 +1,5 @@
 <?php
-//Zmienne do formularza
-$name = $surname = $address = $amount = $deposit = $info = '';
-$nameErr = $surnameErr = $addressErr = $amountErr = $depositErr = '';
+
 
 //Komunikacja z Azure 
 try {
@@ -66,53 +64,64 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 </header>
 
 <main>
-<div class="container py-5 d-flex flex-column justify-content-center">
+<form method="POST" action="<?php echo htmlspecialchars(
+      $_SERVER['PHP_SELF']
+    ); ?>"  class="container py-5 d-flex flex-column justify-content-center">
   <h2>Dodawanie stroju do bazy </h2>
-  <form>
-    <div class="form-group py-1 ">
-      <label for="name">Nazwa stroju:</label>
-      <input type="name" class="form-control form-control-lg w-50 " id="name" placeholder="Wprowadź nazwę stroju">
-    </div>
-
+    <div class="mb-3">
+      <label for="name" class="form-label">Nazwa stroju:</label>
+      <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź nazwe stroju" >
+      <div class="invalid-feedback">
+        <?php echo $nameErr; ?>
+      </div>
     
-  </form>
+    </div>
+    <label class="py-2">Rozmiar stroju:</label>
+    <select class="form-select form-select-lg mb-3 w-50" aria-label=".form-select-lg example">
+    <label for="name" class="form-label">Nazwa stroju:</label>
+      <option selected>Wybierz rozmiar stroju</option>
+      <option value="1">XS</option>
+      <option value="2">S</option>
+      <option value="3">M</option>
+      <option value="4">L</option>
+      <option value="5">XL</option>
+    </select>
 
-  <!--Checkboxy rodzaj stroju-->
-  <label class="py-2">Rodzaj stroju:</label>
-  <div class="container py-1 d-flex flex-row">
-    <select class="form-select w-50" aria-label="Default select example">
-        <option selected>Wybierz rodzaj stroju</option>
-        <option value="1">Dziecięcy</option>
-        <option value="2">Dorośli</option>
+    <label class="py-2">Rodzaj stroju:</label>
+    <select class="form-select form-select-lg mb-3 w-50" aria-label=".form-select-lg example">
+      <option selected>Wybierz rodzaj stroju</option>
+      <option value="1">Dorośli</option>
+      <option value="2">Dzieci</option>
+  
+    </select>
+
+    <label class="py-2">Rozmiar stroju:</label>
+    <select class="form-select form-select-lg mb-3 w-50" aria-label=".form-select-lg example">
+      <label for="exampleFormControlTextarea1" class="form-select " >Informacje dodatkowe:</label>
+      <option selected>Wybierz rodzaj stroju</option>
+      <option value="1">Męski</option>
+      <option value="2">Damski</option>
+  
     </select>
     
-  </div>
-
-  <!-- Rozmiar stroju -->
-  <label class="py-2">Rozmiar stroju:</label>
-  <div class="container py-1 d-flex flex-row">
-    <select class="form-select w-50" aria-label="Default select example">
-        <option selected>Wybierz rozmiar stroju</option>
-        <option value="1">XS</option>
-        <option value="2">S</option>
-        <option value="3">M</option>
-        <option value="4">L</option>
-        <option value="4">XL</option>
-
-
-    </select>
-    
-  </div>
-
-  <div class="form-floating py-2 w-50 ">
-      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-      <label for="floatingTextarea2">Informacje dodatkowe</label>
+    <div class="mb-3 w-50">
+      <label for="exampleFormControlTextarea1" class="form-label " >Akcesoria:</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
     </div>
-  <!-- Przyciski-->
-  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Dodaj zdjęcie</button></div>
-  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Dodaj tag NFC</button></div>
-  <div class="p-1"><button type="button" class="btn btn-primary btn-block btn-lg w-50">Zatwierdź dane</button></div>
+    <div class="mb-3 w-50">
+      <label for="exampleFormControlTextarea1" class="form-label " >Informacje dodatkowe:</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+    </div>
+    
+    <div class="py-1"><input type="submit"  name="submit" value="Zeskanuj TAG NFC" class="btn btn-primary btn-block btn-lg w-50"></div>
+    <div class="py-1"><input type="submit"  name="submit" value="Dodaj zdjęcie" class="btn btn-primary btn-block btn-lg w-50"></div>
+    <div class="py-1"><input type="submit"  name="submit" value="Dodaj strój do bazy" class="btn btn-primary btn-block btn-lg w-50"></div>
+    
 
+</form>
+
+  
+  
 </main>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 

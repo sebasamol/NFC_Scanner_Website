@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
   if (empty($nameErr) && empty($surnameErr) && empty($addressErr) && empty($numberErr)) {
     $tsql = "INSERT INTO Clients (FirstName, LastName, Address, Number) VALUES ('$name', '$surname', '$address', '$number')";
     $getResults= sqlsrv_query($conn, $tsql);
-    
+    echo '<script>alert("Klient został dodany do bazy")</script>';
     
     
   }
@@ -161,7 +161,7 @@ if (isset($_POST['submit'])) {
       </div>
     </div>
     
-    <div class="mb-3"></div>
+    <div class="mb-3">
         <input type="submit" name="submit" value="Dodaj klienta" class="btn btn-primary btn-block btn-lg w-50">
     </div>
 
