@@ -32,4 +32,12 @@ nav{
 
 }
 
-
+/* scroll table*/
+.scroll{
+    height:200px; 
+    overflow: auto
+}
+.table{
+    height: 400px;
+    font-size: small;
+}

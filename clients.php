@@ -89,13 +89,16 @@ if (isset($_POST['submit'])) {
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <meta name="viewport" content="width=device-width,initial-scale1.0">
         <title>Wypożyczalnia strojów karnawałowych</title>
-    
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="styles.css">
+          
+        <script src="script.js"></script> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/abd674511e.js" crossorigin="anonymous"></script>
 
 </head>
@@ -126,46 +129,99 @@ if (isset($_POST['submit'])) {
 </header>
 
 <main>
-  <div class="container text-center">
+<div class="container text-center mt-5">
+  <div class ="scroll mt-5" >
+    <table class="table table-striped text-center" >
+      <thead>
+        <tr>
+          
+          <th >Imię</th>
+          <th >Nazwisko</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <?php
+        $tsql= "SELECT * FROM [dbo].[Clients]";
+        $getResults= sqlsrv_query($conn, $tsql);
+         while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+
+        ?>
+
+        <tr>
+          
+          <td class="col-xs-3"><?php echo $row['FirstName'];?></td>
+          <td class="col-xs-3"><?php echo $row['LastName'];?></td>
     
-  <table class="table table-fixed">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Imię</th>
-      <th scope="col">Nazwisko</th>
-      <th scope="col">Adres zamieszkania</th>
-      <th scope="col">Numer telefonu</th>
-    </tr>
-  </thead>
-    <tbody>
+        </tr>
+        <?php 
+          }
+        ?>
+      </tbody>
+      </table>
+    </div>
+      <div class ="d-flex flex-row">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Dodaj klienta do bazy</button>
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
 
-    <?php
-    $tsql= "SELECT * FROM [dbo].[Clients]";
-    $getResults= sqlsrv_query($conn, $tsql);
-      while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title">Dodawanie klienta do bazy</h3>
+                
+            </div>
+            <div class="modal-body container py-5 d-flex flex-column justify-content-center">
+              <form method="POST" action="<?php echo htmlspecialchars(
+              $_SERVER['PHP_SELF']
+              ); ?>">
+              <div class="mb-3 text-lg-start">
+                <label for="name" class="form-label">Imię:</label>
+                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź imię" >
+               <div class="invalid-feedback">
+                <?php echo $nameErr; ?>
+              </div>
+              <div class="mb-3 py-2 text-lg-start">
+                <label for="name" class="form-label">Nazwisko:</label>
+                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź nazwisko" >
+               <div class="invalid-feedback">
+                <?php echo $nameErr; ?>
+              </div>
+              <div class="mb-3 py-2 text-lg-start">
+                <label for="name" class="form-label">Adres zamieszkania:</label>
+                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź adres zamieszkania" >
+                <div class="invalid-feedback">
+                <?php echo $nameErr; ?>
+              </div>
+              <div class="mb-3 py-2 text-lg-start">
+                <label for="name" class="form-label">Numer telefonu:</label>
+                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź numer telefonu" >
+                <div class="invalid-feedback">
+                <?php echo $nameErr; ?>
+              </div>
+            </div>
 
-     ?>
-
-    <tr>
-      <th scope="row" ><?php echo $row['ID'];?></th>
-      <td><?php echo $row['FirstName'];?></td>
-      <td><?php echo $row['LastName'];?></td>
-      <td><?php echo $row['Address'];?></td>
-      <td><?php echo $row['Number'];?></td>
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-primary">Zapisz</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            </div>
+          </div>
+        </div>
       
-    </tr>
-    <?php 
-      }
-    ?>
-    </tbody>
-  </table>
+      
+      
+  </div>
 </div>
- 
+
+
+
 </main>
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       
 </body>
 
