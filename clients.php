@@ -19,7 +19,7 @@ catch (PDOException $e) {
 $connectionInfo = array("UID" => "nfcadmin", "pwd" => "Kret5871#", "Database" => "databasenfc", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:databasenfc.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+/*
 if (isset($_POST['submit'])) {
 
   if (empty($_POST['name'])) {
@@ -73,6 +73,7 @@ if (isset($_POST['submit'])) {
 
 
 }
+*/
   
 
     
@@ -108,13 +109,11 @@ if (isset($_POST['submit'])) {
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
-        <a class="nav-link px-lg-3 active" href="index.php">Strona główna</a>
-        <a class="nav-link px-lg-3" href="#">Baza wypożyczeń</a>
-        <a class="nav-link px-lg-3" href="rentcostume.php">Wypożycz strój</a>
-        <a class="nav-link px-lg-3" href="addcostume.php">Dodaj strój</a>
-        <a class="nav-link px-lg-3" href="editcostume.php">Edytuj strój</a>
-        <a class="nav-link px-lg-3" href="clients.php">Klienci</a>
-        <a class="nav-link px-lg-3" href="#">Logowanie</a>
+        <a class="nav-link px-lg-3 " href="index.php">Strona główna</a>
+        <a class="nav-link px-lg-3 active" href="clients.php">Klienci</a>
+        <a class="nav-link px-lg-3 " href="costumes.php">Stroje</a>
+        <a class="nav-link px-lg-3 " href="rental.php">Wypożyczenia</a>
+        <a class="nav-link px-lg-3 " href="employers.php">Pracownicy</a>
 
 
       </div>
@@ -127,45 +126,42 @@ if (isset($_POST['submit'])) {
 </header>
 
 <main>
-
-  <form method="POST" action="<?php echo htmlspecialchars(
-      $_SERVER['PHP_SELF']
-    ); ?>"  class="container py-5 d-flex flex-column justify-content-center">
-  <h2>Dane klienta</h2>
-    <div class="mb-3">
-      <label for="name" class="form-label">Imię:</label>
-      <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź imię" >
-      <div class="invalid-feedback">
-        <?php echo $nameErr; ?>
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="surname" class="form-label">Nazwisko:</label>
-      <input type="text" class="form-control <?php echo !$surnameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="surname" name="surname"placeholder="Wprowadź nazwisko" ">
-      <div class="invalid-feedback">
-        <?php echo $surnameErr; ?>
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="address" class="form-label">Adres zamieszkania:</label>
-      <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
-      <div class="invalid-feedback">
-        <?php echo $addressErr; ?>
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="number" class="form-label">Numer telefonu:</label>
-      <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="number" name="number" placeholder="Wprowadź numer telefonu " >
-      <div class="invalid-feedback">
-        <?php echo $numberErr; ?>
-      </div>
-    </div>
+  <div class="container text-center">
     
-    <div class="mb-3">
-        <input type="submit" name="submit" value="Dodaj klienta" class="btn btn-primary btn-block btn-lg w-50">
-    </div>
+  <table class="table table-fixed">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Imię</th>
+      <th scope="col">Nazwisko</th>
+      <th scope="col">Adres zamieszkania</th>
+      <th scope="col">Numer telefonu</th>
+    </tr>
+  </thead>
+    <tbody>
 
-  </form>
+    <?php
+    $tsql= "SELECT * FROM [dbo].[Clients]";
+    $getResults= sqlsrv_query($conn, $tsql);
+      while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+
+     ?>
+
+    <tr>
+      <th scope="row" ><?php echo $row['ID'];?></th>
+      <td><?php echo $row['FirstName'];?></td>
+      <td><?php echo $row['LastName'];?></td>
+      <td><?php echo $row['Address'];?></td>
+      <td><?php echo $row['Number'];?></td>
+      
+    </tr>
+    <?php 
+      }
+    ?>
+    </tbody>
+  </table>
+</div>
+ 
 </main>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
