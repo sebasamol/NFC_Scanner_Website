@@ -19,7 +19,7 @@ catch (PDOException $e) {
 $connectionInfo = array("UID" => "nfcadmin", "pwd" => "Kret5871#", "Database" => "databasenfc", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:databasenfc.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-/*
+
 if (isset($_POST['submit'])) {
 
   if (empty($_POST['name'])) {
@@ -66,14 +66,12 @@ if (isset($_POST['submit'])) {
   if (empty($nameErr) && empty($surnameErr) && empty($addressErr) && empty($numberErr)) {
     $tsql = "INSERT INTO Clients (FirstName, LastName, Address, Number) VALUES ('$name', '$surname', '$address', '$number')";
     $getResults= sqlsrv_query($conn, $tsql);
-    echo '<script>alert("Klient został dodany do bazy")</script>';
-    
     
   }
 
 
 }
-*/
+
   
 
     
@@ -89,11 +87,17 @@ if (isset($_POST['submit'])) {
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <meta name="viewport" content="width=device-width,initial-scale1.0">
         <title>Wypożyczalnia strojów karnawałowych</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        
+
+
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        
         <link rel="stylesheet" href="styles.css">
+        
           
         <script src="script.js"></script> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,11 +131,10 @@ if (isset($_POST['submit'])) {
 <header>
 
 </header>
-
 <main>
 <div class="container text-center mt-5">
   <div class ="scroll mt-5" >
-    <table class="table table-striped text-center" >
+    <table class="table table-striped  display" id="infoTable" >
       <thead>
         <tr>
           
@@ -144,16 +147,16 @@ if (isset($_POST['submit'])) {
       <tbody>
 
         <?php
-        $tsql= "SELECT * FROM [dbo].[Clients]";
-        $getResults= sqlsrv_query($conn, $tsql);
-         while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+        $tsql2= "SELECT * FROM [dbo].[Clients]";
+        $getResults2= sqlsrv_query($conn, $tsql2);
+         while($row = sqlsrv_fetch_array($getResults2, SQLSRV_FETCH_ASSOC)) {
 
         ?>
 
-        <tr>
+        <tr class="clickableRow">
           
-          <td class="col-xs-3"><?php echo $row['FirstName'];?></td>
-          <td class="col-xs-3"><?php echo $row['LastName'];?></td>
+          <td ><?php echo $row['FirstName'];?></td>
+          <td ><?php echo $row['LastName'];?></td>
     
         </tr>
         <?php 
@@ -161,10 +164,15 @@ if (isset($_POST['submit'])) {
         ?>
       </tbody>
       </table>
+
     </div>
-      <div class ="d-flex flex-row">
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Dodaj klienta do bazy</button>
+      <div class ="d-flex flex-row mt-3">
+        <div class="mt-3">
+          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">Dodaj klienta</button>
+          <button type="button" class="btn btn-primary btn-block">Wyświetl dane</button>
+          <button type="button" class="btn btn-primary btn-block">Edytuj dane</button>
+          <button id="deletebutton" class="btn btn-primary btn-block">Usuń klienta</button>
+        </div>
         <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
 
@@ -179,32 +187,32 @@ if (isset($_POST['submit'])) {
               ); ?>">
               <div class="mb-3 text-lg-start">
                 <label for="name" class="form-label">Imię:</label>
-                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź imię" >
-               <div class="invalid-feedback">
+                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź imię" >
+                <div class="invalid-feedback">
                 <?php echo $nameErr; ?>
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Nazwisko:</label>
-                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź nazwisko" >
-               <div class="invalid-feedback">
-                <?php echo $nameErr; ?>
+                <input type="text" class="form-control <?php echo !$surnameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="surname" name="surname" placeholder="Wprowadź nazwisko" >
+                <div class="invalid-feedback">
+                <?php echo $surnameErr; ?>
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Adres zamieszkania:</label>
-                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź adres zamieszkania" >
+                <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
                 <div class="invalid-feedback">
-                <?php echo $nameErr; ?>
+                <?php echo $addressErr; ?>
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Numer telefonu:</label>
-                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-50 " id="name" name="name" placeholder="Wprowadź numer telefonu" >
+                <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
                 <div class="invalid-feedback">
-                <?php echo $nameErr; ?>
+                <?php echo $numberErr; ?>
               </div>
             </div>
 
             <div class="modal-footer justify-content-center">
-              <button type="button" class="btn btn-primary">Zapisz</button>
+              <input type="submit"  name="submit" value="Zapisz" class="btn btn-primary btn-block btn-lg">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
             </div>
           </div>
