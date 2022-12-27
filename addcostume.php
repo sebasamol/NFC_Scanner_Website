@@ -95,12 +95,13 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
   
     </select>
 
-    <label class="py-2">Rozmiar stroju:</label>
+    <label class="py-2">Płeć:</label>
     <select class="form-select form-select-lg mb-3 w-50" aria-label=".form-select-lg example">
       <label for="exampleFormControlTextarea1" class="form-select " >Informacje dodatkowe:</label>
-      <option selected>Wybierz rodzaj stroju</option>
+      <option selected>Wybierz płeć</option>
       <option value="1">Męski</option>
       <option value="2">Damski</option>
+      <option value="3">Unisex</option>
   
     </select>
     
