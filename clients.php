@@ -90,10 +90,7 @@ if (isset($_POST['submit'])) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        
-
-
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
@@ -168,10 +165,7 @@ if (isset($_POST['submit'])) {
     </div>
       <div class ="d-flex flex-row mt-3">
         <div class="mt-3">
-          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">Dodaj klienta</button>
-          <button type="button" class="btn btn-primary btn-block">Wyświetl dane</button>
-          <button type="button" class="btn btn-primary btn-block">Edytuj dane</button>
-          <button id="deletebutton" class="btn btn-primary btn-block">Usuń klienta</button>
+          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal"><span class="bi bi-plus-circle"></span> Dodaj nowego klienta</button>
         </div>
         <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
