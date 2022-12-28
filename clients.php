@@ -6,20 +6,8 @@ $number = '';
 $nameErr = $surnameErr = $addressErr = $numberErr = '';
 
 // PHP Data Objects(PDO) Sample Code:
-try {
-    $conn = new PDO("sqlsrv:server = tcp:databasenfc.database.windows.net,1433; Database = databasenfc", "nfcadmin", "Kret5871#");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
 
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "nfcadmin", "pwd" => "Kret5871#", "Database" => "databasenfc", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:databasenfc.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
-
+$link = mysqli_connect("dbnfc.mysql.database.azure.com","nfcadmin","Kret5871#","clients","3306");
 if (isset($_POST['submit'])) {
 
   if (empty($_POST['name'])) {
@@ -101,7 +89,11 @@ if (isset($_POST['submit'])) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
         <script src="https://kit.fontawesome.com/abd674511e.js" crossorigin="anonymous"></script>
-
+        <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script>
 </head>
 
 <body>
@@ -132,34 +124,47 @@ if (isset($_POST['submit'])) {
 <div class="container text-center mt-5">
   <div class ="scroll mt-5" >
     <table class="table table-striped  display" id="infoTable" >
-      <thead>
-        <tr>
-          
-          <th >Imię</th>
-          <th >Nazwisko</th>
-
-        </tr>
-      </thead>
-
-      <tbody>
-
-        <?php
-        $tsql2= "SELECT * FROM [dbo].[Clients]";
-        $getResults2= sqlsrv_query($conn, $tsql2);
-         while($row = sqlsrv_fetch_array($getResults2, SQLSRV_FETCH_ASSOC)) {
-
-        ?>
-
-        <tr class="clickableRow">
-          
-          <td ><?php echo $row['FirstName'];?></td>
-          <td ><?php echo $row['LastName'];?></td>
-    
-        </tr>
-        <?php 
-          }
-        ?>
-      </tbody>
+    <?php
+                    
+                    
+                    
+                    $sql = "SELECT * FROM clients";
+                    if($result = mysqli_query($link, $sql)){
+                        if(mysqli_num_rows($result) > 0){
+                            echo '<table class="table table-bordered table-striped">';
+                                echo "<thead>";
+                                    echo "<tr>";
+                                
+                                        echo "<th>Imię</th>";
+                                        echo "<th>Nazwisko</th>";
+                                        echo "<th>Adres zamieszkania</th>";
+                                        echo "<th>Numer telefonu</th>";
+                                    echo "</tr>";
+                                echo "</thead>";
+                                echo "<tbody>";
+                                while($row = mysqli_fetch_array($result)){
+                                    echo "<tr>";
+                                        echo "<td>" . $row['LastName'] . "</td>";
+                                        echo "<td>" . $row['FirstName'] . "</td>";
+                                        echo "<td>" . $row['Address'] . "</td>";
+                                        echo "<td>" . $row['Number'] . "</td>";
+                                        
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";                            
+                            echo "</table>";
+                            // Free result set
+                            mysqli_free_result($result);
+                        } else{
+                            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                        }
+                    } else{
+                        echo "Oops! Something went wrong. Please try again later.";
+                    }
+ 
+                    // Close connection
+                    mysqli_close($link);
+                    ?>
       </table>
 
     </div>

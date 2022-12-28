@@ -34,7 +34,6 @@ nav{
 
 /*scrolltable*/
 
-/*tr:hover {background-color:rgb(123, 151, 233);}*/
 
   thead, tbody tr {
     display: table;
@@ -48,6 +47,10 @@ nav{
     max-height: 400px;
   }
   
+  
+
+
+
   /*button*/
   .btn {
     background-color: royalblue;
