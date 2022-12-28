@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
 
   if (empty($nameErr) && empty($surnameErr) && empty($addressErr) && empty($numberErr)) {
     $tsql = "INSERT INTO Clients (FirstName, LastName, Address, Number) VALUES ('$name', '$surname', '$address', '$number')";
-    $getResults= sqlsrv_query($conn, $tsql);
+    $getResults= mysqli_query($link, $tsql);
     
   }
 
@@ -123,10 +123,8 @@ if (isset($_POST['submit'])) {
 <main>
 <div class="container text-center mt-5">
   <div class ="scroll mt-5" >
-    <table class="table table-striped  display" id="infoTable" >
-    <?php
-                    
-                    
+    
+                  <?php
                     
                     $sql = "SELECT * FROM clients";
                     if($result = mysqli_query($link, $sql)){
@@ -137,17 +135,22 @@ if (isset($_POST['submit'])) {
                                 
                                         echo "<th>Imię</th>";
                                         echo "<th>Nazwisko</th>";
-                                        echo "<th>Adres zamieszkania</th>";
-                                        echo "<th>Numer telefonu</th>";
+                                        echo "<th>Opcje</th>";
+                                        
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['LastName'] . "</td>";
-                                        echo "<td>" . $row['FirstName'] . "</td>";
-                                        echo "<td>" . $row['Address'] . "</td>";
-                                        echo "<td>" . $row['Number'] . "</td>";
+                                        echo "<td>" . $row['firstname'] . "</td>";
+                                        echo "<td>" . $row['lastname'] . "</td>";
+                                        echo "<td>";
+                                        echo '<a href="readclients.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                        echo '<a href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                                        echo '<a href="delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                    echo "</td>";
+
+                                        
                                         
                                     echo "</tr>";
                                 }
@@ -164,10 +167,11 @@ if (isset($_POST['submit'])) {
  
                     // Close connection
                     mysqli_close($link);
+                    
                     ?>
       </table>
 
-    </div>
+  </div>
       <div class ="d-flex flex-row mt-3">
         <div class="mt-3">
           <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal"><span class="bi bi-plus-circle"></span> Dodaj nowego klienta</button>
