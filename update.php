@@ -1,8 +1,7 @@
 <?php
 $link = mysqli_connect("dbnfc.mysql.database.azure.com","nfcadmin","Kret5871#","clients","3306");
-// Define variables and initialize with empty values
-$firstname = $lastname = $address = $number= "";
-$firstname_err = $lastname_err = $address_err = $number_err= "";
+$firstname = $lastname = $address = $number = "";
+$firstname_err = $lastname_err = $address_err = $number_err = "";
  
 // Processing form data when form is submitted
 if(isset($_POST["id"]) && !empty($_POST["id"])){
@@ -12,39 +11,35 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Validate name
     $input_firstname = trim($_POST["firstname"]);
     if(empty($input_firstname)){
-        $firstname_err = "Imię jest wymagane.";
-    } elseif(!filter_var($input_firstname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $firstname_err = "Please enter a valid name.";
+        $firstname_err = "Please enter an address.";     
     } else{
         $firstname = $input_firstname;
     }
     
+    // Validate address address
     $input_lastname = trim($_POST["lastname"]);
     if(empty($input_lastname)){
-        $lastname_err = "Nazwisko jest wymagane.";     
+        $lastname_err = "Please enter an address.";     
     } else{
         $lastname = $input_lastname;
     }
     
+    // Validate salary
     $input_address = trim($_POST["address"]);
     if(empty($input_address)){
-        $address_err = "Adres zamieszkania jest wymagany";     
-    } elseif(!ctype_digit($input_address)){
-        $address_err = "Please enter a positive integer value.";
+        $address_err = "Please enter an address.";     
     } else{
         $address = $input_address;
     }
     $input_number = trim($_POST["number"]);
     if(empty($input_number)){
-        $number_err = "Numer telefonu jest wymagany";     
-    } elseif(!ctype_digit($input_address)){
-        $number_err = "Please enter a positive integer value.";
+        $number_err = "Please enter an address.";     
     } else{
         $number = $input_number;
     }
     
     // Check input errors before inserting in database
-    if(empty($firstname_err) && empty($lastname_err) && empty($address_err)&& empty($number_err)){
+    if(empty($firstname_err) && empty($lastname_err) && empty($address_err) && empty($number_err) ){
         // Prepare an update statement
         $sql = "UPDATE clients SET firstname=?, lastname=?, address=?, number=? WHERE id=?";
          
@@ -131,7 +126,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <meta name="viewport" content="width=device-width,initial-scale1.0">
         <title>Wypożyczalnia strojów karnawałowych</title>
@@ -149,14 +144,15 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
         <script src="https://kit.fontawesome.com/abd674511e.js" crossorigin="anonymous"></script>
-        <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();   
-        });
-    </script>
+    <style>
+        .wrapper{
+            width: 600px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 sticky-top">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php"><i class="fa-solid fa-masks-theater"></i> Wypożyczalnia strojów </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -177,39 +173,39 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
     </nav>
     <div class="wrapper">
-        <div class="container flex-row mt-3">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="mt-5">Edytuj dane klienta</h2>
+                    <h2 class="mt-5">Update Record</h2>
+                    <p>Please edit the input values and submit to update the employee record.</p>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
-                        <div class="form-group py-2">
-                            <label>Imię:</label>
-                            <input class="form-control form-control-lg w-50 <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="firstname" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>">
                             <span class="invalid-feedback"><?php echo $firstname_err;?></span>
                         </div>
-                        <div class="form-group py-2">
-                            <label>Nazwisko:</label>
-                            <input class="form-control form-control-lg w-50 <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $lastname; ?>">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea name="lastname" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>"><?php echo $lastname; ?></textarea>
                             <span class="invalid-feedback"><?php echo $lastname_err;?></span>
                         </div>
-                        <div class="form-group py-2">
-                            <label>Adres zamieszkania:</label>
-                            <input class="form-control form-control-lg w-50 <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $address; ?>">
+                        <div class="form-group">
+                            <label>Salary</label>
+                            <input type="text" name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $address; ?>">
                             <span class="invalid-feedback"><?php echo $address_err;?></span>
                         </div>
-                        <div class="form-group py-2">
-                            <label>Numer telefonu:</label>
-                            <input class="form-control form-control-lg w-50 <?php echo (!empty($number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $number; ?>">
+                        <div class="form-group">
+                            <label>Salary</label>
+                            <input type="text" name="number" class="form-control <?php echo (!empty($number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $number; ?>">
                             <span class="invalid-feedback"><?php echo $number_err;?></span>
                         </div>
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-                        <input type="submit" class="btn btn-primary mt-2" value="Zatwierdź dane">
-                        <a href="index.php" class="btn btn-secondary mt-2">Anuluj</a>
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                        <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
                     </form>
                 </div>
             </div>        
         </div>
-    </div>
     </div>
 </body>
 </html>
