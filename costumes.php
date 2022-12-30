@@ -1,9 +1,12 @@
 <?php
 $name = '';
-$surname = '';
-$address = '';
-$number = '';
-$nameErr = $surnameErr = $addressErr = $numberErr = '';
+$type = '';
+$gender = '';
+$size = '';
+$elements = '';
+$info = '';
+$tagid = '';
+$nameErr = $typeErr = $genderErr = $elementsErr = $infoErr = $tagidErr =  '';
 
 // PHP Data Objects(PDO) Sample Code:
 
@@ -11,7 +14,7 @@ $link = mysqli_connect("dbnfc.mysql.database.azure.com","nfcadmin","Kret5871#","
 if (isset($_POST['submit'])) {
 
   if (empty($_POST['name'])) {
-    $nameErr = 'Imię jest wymagane';
+    $nameErr = 'Nazwa stroju jest wymagana';
   } else {
     $name = filter_input(
       INPUT_POST,
@@ -19,28 +22,46 @@ if (isset($_POST['submit'])) {
       FILTER_SANITIZE_FULL_SPECIAL_CHARS
     );
   }
-
-
-  if (empty($_POST['surname'])) {
-    $surnameErr = 'Nazwisko jest wymagane';
+  if (empty($_POST['type'])) {
+    $typeErr = 'Rodzaj stroju jest wymagany';
   } else {
-    $surname = filter_input(
+    $type = filter_input(
+      INPUT_POST,
+     'type',
+      FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    );
+  }
+
+
+  if (empty($_POST['gender'])) {
+    $genderErr = 'Płeć stroju jest wymagana';
+  } else {
+    $gender = filter_input(
     INPUT_POST,
-      'surname',
+      'gender',
     FILTER_SANITIZE_FULL_SPECIAL_CHARS
     );
   }
-  if (empty($_POST['address'])) {
-    $addressErr = 'Adres jest wymagany';
+  if (empty($_POST['size'])) {
+    $sizeErr = 'Rozmiar jest wymagany';
   } else {
-    $address = filter_input(
+    $size = filter_input(
+    INPUT_POST,
+      'size',
+    FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    );
+  }
+  if (empty($_POST['elements'])) {
+    $elementsErr = 'Adres jest wymagany';
+  } else {
+    $elements = filter_input(
     INPUT_POST,
       'address',
     FILTER_SANITIZE_FULL_SPECIAL_CHARS
     );
   }
 
-  if (empty($_POST['number'])) {
+  if (empty($_POST['info'])) {
     $numberErr = 'Numer telefonu jest wymagany';
   } else {
     $number = filter_input(
@@ -51,8 +72,8 @@ if (isset($_POST['submit'])) {
   }
   
 
-  if (empty($nameErr) && empty($surnameErr) && empty($addressErr) && empty($numberErr)) {
-    $tsql = "INSERT INTO clients (firstname, lastname, address, number) VALUES ('$name', '$surname', '$address', '$number')";
+  if (empty($nameErr) && empty($typeErr) && empty($genderErr) && empty($sizeErr) && empty($elementsErr) && empty($infoErr)) {
+    $tsql = "INSERT INTO costumes (name, type, gender, size, elements, info,) VALUES ('$name', '$type', '$gender', '$size', '$elements', '$info')";
     $getResults= mysqli_query($link, $tsql);
     
   }
@@ -106,8 +127,8 @@ if (isset($_POST['submit'])) {
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
         <a class="nav-link px-lg-3 " href="index.php">Strona główna</a>
-        <a class="nav-link px-lg-3 active" href="clients.php">Klienci</a>
-        <a class="nav-link px-lg-3 " href="costumes.php">Stroje</a>
+        <a class="nav-link px-lg-3 " href="clients.php">Klienci</a>
+        <a class="nav-link px-lg-3 active " href="costumes.php">Stroje</a>
         <a class="nav-link px-lg-3 " href="rental.php">Wypożyczenia</a>
         <a class="nav-link px-lg-3 " href="employers.php">Pracownicy</a>
 
@@ -122,29 +143,32 @@ if (isset($_POST['submit'])) {
 </header>
 <main>
 <div class="container text-center mt-5">
-  <h2>Lista klientów</h2>
+  <h2>Lista strojów</h2>
   <div class ="scroll mt-5" >
     
                   <?php
                     
-                    $sql = "SELECT * FROM clients";
+                    $sql = "SELECT * FROM costumes";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo '<table class="table table-bordered table-striped">';
                                 echo "<thead>";
                                     echo "<tr>";
                                 
-                                        echo "<th>Imię</th>";
-                                        echo "<th>Nazwisko</th>";
-                                        echo "<th>Opcje</th>";
+                                        echo "<th>Nazwa stroju</th>";
+                                        echo "<th>Rodzaj stroju</th>";
+                                        echo "<th>Płeć</th>";
+                                        echo "<th>Rozmiar stroju</th>";
                                         
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['firstname'] . "</td>";
-                                        echo "<td>" . $row['lastname'] . "</td>";
+                                        echo "<td>" . $row['name'] . "</td>";
+                                        echo "<td>" . $row['type'] . "</td>";
+                                        echo "<td>" . $row['gender'] . "</td>";
+                                        echo "<td>" . $row['size'] . "</td>";
                                         echo "<td>";
                                         echo '<a href="readclients.php?id='. $row['id'] .'" class="mr-3" title="Wyświetl" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                         echo '<a href="updateclients.php?id='. $row['id'] .'" class="mr-3" title="Edytuj" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
@@ -160,7 +184,7 @@ if (isset($_POST['submit'])) {
                             // Free result set
                             mysqli_free_result($result);
                         } else{
-                            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                            echo '<div class="alert alert-danger"><em>Nie znalezionio strojów.</em></div>';
                         }
                     } else{
                         echo "Oops! Something went wrong. Please try again later.";
@@ -175,14 +199,14 @@ if (isset($_POST['submit'])) {
   </div>
       <div class ="d-flex flex-row mt-3">
         <div class="mt-3">
-          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal"><span class="bi bi-plus-circle"></span> Dodaj klienta</button>
+          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal"><span class="bi bi-plus-circle"></span> Dodaj strój</button>
         </div>
         <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
 
             <div class="modal-content">
               <div class="modal-header">
-                <h3 class="modal-title">Dodawanie klienta do bazy</h3>
+                <h3 class="modal-title">Dodawanie stroju do bazy</h3>
                 
             </div>
             <div class="modal-body container py-5 d-flex flex-column justify-content-center">
@@ -190,31 +214,58 @@ if (isset($_POST['submit'])) {
               $_SERVER['PHP_SELF']
               ); ?>">
               <div class="mb-3 text-lg-start">
-                <label for="name" class="form-label">Imię:</label>
-                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź imię" >
+                <label for="name" class="form-label">Nazwa stroju:</label>
+                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź nazwę stroju" >
                 <div class="invalid-feedback">
                 <?php echo $nameErr; ?>
               </div>
               <div class="mb-3 py-2 text-lg-start">
-                <label for="name" class="form-label">Nazwisko:</label>
-                <input type="text" class="form-control <?php echo !$surnameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="surname" name="surname" placeholder="Wprowadź nazwisko" >
+                <label for="type" class="form-label">Typ stroju</label>
+                <select class="form-control">
+                    <option>Dorośli</option>
+                    <option>Dzieci</option>
+                </select>
                 <div class="invalid-feedback">
-                <?php echo $surnameErr; ?>
+                <?php echo $typeErr; ?>
               </div>
+              
               <div class="mb-3 py-2 text-lg-start">
-                <label for="name" class="form-label">Adres zamieszkania:</label>
-                <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
+                <label for="name" class="form-label">Płeć:</label>
+                <select class="form-control">
+                    <option>Damski</option>
+                    <option>Męski</option>
+                    <option>Unisex</option>
+                </select>
                 <div class="invalid-feedback">
                 <?php echo $addressErr; ?>
               </div>
               <div class="mb-3 py-2 text-lg-start">
-                <label for="name" class="form-label">Numer telefonu:</label>
+                <label for="name" class="form-label">Rozmiar stroju:</label>
+                <select class="form-control">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                </select>
+                <div class="invalid-feedback">
+                <?php echo $numberErr; ?>
+              </div>
+              <div class="mb-3 py-2 text-lg-start">
+                <label for="name" class="form-label">Akcesoria:</label>
+                <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
+                <div class="invalid-feedback">
+                <?php echo $numberErr; ?>
+              </div>
+              <div class="mb-3 py-2 text-lg-start">
+                <label for="name" class="form-label">Informacje dodatkowe:</label>
                 <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
                 <div class="invalid-feedback">
                 <?php echo $numberErr; ?>
               </div>
             </div>
-
+            
             <div class="modal-footer justify-content-center">
               <input type="submit"  name="submit" value="Zapisz" class="btn btn-primary btn-block btn-lg">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>

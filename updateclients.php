@@ -145,8 +145,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
         <script src="https://kit.fontawesome.com/abd674511e.js" crossorigin="anonymous"></script>
     <style>
-        .wrapper{
+        .editform{
             width: 600px;
+            
             margin: 0 auto;
         }
     </style>
@@ -172,36 +173,39 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         </div>
 
     </nav>
-    <div class="wrapper">
+    <div class="editform">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="mt-5">Update Record</h2>
-                    <p>Please edit the input values and submit to update the employee record.</p>
+                    <h2 class="mt-5">Edytuj dane klienta</h2>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="firstname" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>">
-                            <span class="invalid-feedback"><?php echo $firstname_err;?></span>
+                        <div class="mb-3 text-lg-start">
+                         <label for="firstname" class="form-label">Imię:</label>
+                            <input type="text" class="form-control <?php echo !$firstnameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="firstname" name="firstname" placeholder="Wprowadź imię" >
+                            <div class="invalid-feedback">
+                            <?php echo $firstnameErr; ?>
                         </div>
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea name="lastname" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>"><?php echo $lastname; ?></textarea>
-                            <span class="invalid-feedback"><?php echo $lastname_err;?></span>
+                        <div class="mb-3 py-2 text-lg-start">
+                            <label for="lastname" class="form-label">Nazwisko:</label>
+                            <input type="text" class="form-control <?php echo !$lastameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="lastname" name="lastname" placeholder="Wprowadź nazwisko" >
+                            <div class="invalid-feedback">
+                            <?php echo $lastameErr; ?>
                         </div>
-                        <div class="form-group">
-                            <label>Salary</label>
-                            <input type="text" name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $address; ?>">
-                            <span class="invalid-feedback"><?php echo $address_err;?></span>
+                        <div class="mb-3 py-2 text-lg-start">
+                         <label for="address" class="form-label">Adres zamieszkania:</label>
+                         <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
+                        <div class="invalid-feedback">
+                            <?php echo $addressErr; ?>
                         </div>
-                        <div class="form-group">
-                            <label>Salary</label>
-                            <input type="text" name="number" class="form-control <?php echo (!empty($number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $number; ?>">
-                            <span class="invalid-feedback"><?php echo $number_err;?></span>
+                         <div class="mb-3 py-2 text-lg-start">
+                            <label for="name" class="form-label">Numer telefonu:</label>
+                            <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
+                            <div class="invalid-feedback">
+                            <?php echo $numberErr; ?>
                         </div>
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                        <input type="submit" class="btn btn-primary mt-2" value="Submit">
+                        <a href="clients.php" class="btn btn-secondary ml-2 mt-2">Cancel</a>
                     </form>
                 </div>
             </div>        
