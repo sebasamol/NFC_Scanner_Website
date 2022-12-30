@@ -156,9 +156,10 @@ if (isset($_POST['submit'])) {
                                     echo "<tr>";
                                 
                                         echo "<th>Nazwa stroju</th>";
-                                        echo "<th>Rodzaj stroju</th>";
+                                        echo "<th>Typ stroju</th>";
                                         echo "<th>Płeć</th>";
                                         echo "<th>Rozmiar stroju</th>";
+                                        echo "<th>Opcje</th>";
                                         
                                     echo "</tr>";
                                 echo "</thead>";
@@ -215,13 +216,14 @@ if (isset($_POST['submit'])) {
               ); ?>">
               <div class="mb-3 text-lg-start">
                 <label for="name" class="form-label">Nazwa stroju:</label>
-                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź nazwę stroju" >
+                <input type="text" class="form-control form-control-lg w-85 <?php echo !$nameErr ?: 'is-invalid'; ?> " id="name" name="name" placeholder="Wprowadź nazwę stroju" >
                 <div class="invalid-feedback">
                 <?php echo $nameErr; ?>
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="type" class="form-label">Typ stroju</label>
-                <select class="form-control">
+                <select class="form-control form-control-lg w-85">
+                    <option value=""disabled selected>Wybierz typ stroju</option>
                     <option>Dorośli</option>
                     <option>Dzieci</option>
                 </select>
@@ -231,7 +233,8 @@ if (isset($_POST['submit'])) {
               
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Płeć:</label>
-                <select class="form-control">
+                <select class="form-control form-control-lg w-85">
+                    <option value=""disabled selected>Wybierz płeć</option>
                     <option>Damski</option>
                     <option>Męski</option>
                     <option>Unisex</option>
@@ -241,7 +244,8 @@ if (isset($_POST['submit'])) {
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Rozmiar stroju:</label>
-                <select class="form-control">
+                <select class="form-control form-control-lg w-85">
+                    <option value=""disabled selected>Wybierz rozmiar stroju</option>
                     <option>XS</option>
                     <option>S</option>
                     <option>M</option>
@@ -254,18 +258,18 @@ if (isset($_POST['submit'])) {
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Akcesoria:</label>
-                <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
+                <textarea class="form-control form-control-lg w-85" id="exampleFormControlTextarea1" rows="3"></textarea>
                 <div class="invalid-feedback">
                 <?php echo $numberErr; ?>
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Informacje dodatkowe:</label>
-                <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
+                <textarea class="form-control form-control-lg w-85" id="exampleFormControlTextarea1" rows="3"></textarea>
                 <div class="invalid-feedback">
                 <?php echo $numberErr; ?>
               </div>
             </div>
-            
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="bi bi-plus-circle"></span> Zeskanuj tag NFC</button>
             <div class="modal-footer justify-content-center">
               <input type="submit"  name="submit" value="Zapisz" class="btn btn-primary btn-block btn-lg">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
