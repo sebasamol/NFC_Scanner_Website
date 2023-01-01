@@ -13,74 +13,87 @@ $nameErr = $typeErr = $genderErr = $elementsErr = $infoErr = $tagidErr =  '';
 $link = mysqli_connect("dbnfc.mysql.database.azure.com","nfcadmin","Kret5871#","clients","3306");
 if (isset($_POST['submit'])) {
 
-  if (empty($_POST['name'])) {
-    $nameErr = 'Nazwa stroju jest wymagana';
-  } else {
-    $name = filter_input(
-      INPUT_POST,
-     'name',
-      FILTER_SANITIZE_FULL_SPECIAL_CHARS
-    );
-  }
-  if (empty($_POST['type'])) {
-    $typeErr = 'Rodzaj stroju jest wymagany';
-  } else {
-    $type = filter_input(
-      INPUT_POST,
-     'type',
-      FILTER_SANITIZE_FULL_SPECIAL_CHARS
-    );
-  }
-
-
-  if (empty($_POST['gender'])) {
-    $genderErr = 'Płeć stroju jest wymagana';
-  } else {
-    $gender = filter_input(
-    INPUT_POST,
-      'gender',
-    FILTER_SANITIZE_FULL_SPECIAL_CHARS
-    );
-  }
-  if (empty($_POST['size'])) {
-    $sizeErr = 'Rozmiar jest wymagany';
-  } else {
-    $size = filter_input(
-    INPUT_POST,
-      'size',
-    FILTER_SANITIZE_FULL_SPECIAL_CHARS
-    );
-  }
-  if (empty($_POST['elements'])) {
-    $elementsErr = 'Adres jest wymagany';
-  } else {
-    $elements = filter_input(
-    INPUT_POST,
-      'address',
-    FILTER_SANITIZE_FULL_SPECIAL_CHARS
-    );
-  }
-
-  if (empty($_POST['info'])) {
-    $numberErr = 'Numer telefonu jest wymagany';
-  } else {
-    $number = filter_input(
-    INPUT_POST,
-      'number',
-    FILTER_SANITIZE_FULL_SPECIAL_CHARS
-    );
-  }
-  
-
-  if (empty($nameErr) && empty($typeErr) && empty($genderErr) && empty($sizeErr) && empty($elementsErr) && empty($infoErr)) {
-    $tsql = "INSERT INTO costumes (name, type, gender, size, elements, info,) VALUES ('$name', '$type', '$gender', '$size', '$elements', '$info')";
-    $getResults= mysqli_query($link, $tsql);
+    if (empty($_POST['name'])) {
+        $nameErr = 'Nazwa stroju jest wymagana';
+    } else {
+        $name = filter_input(
+            INPUT_POST,
+            'name',
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS
+        );
+    }
     
-  }
+    //Kategoria stroju//
+    if(!empty($_POST['type'])) {
+        $selected = $_POST['type'];
+        $type = filter_input(
+            INPUT_POST,
+            'type',
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS
+        );
+    } else {
+        $typeErr = 'Kategoria stroju jest wymagana';
+    }
+    if(!empty($_POST['gender'])) {
+        $selected = $_POST['gender'];
+        $gender = filter_input(
+            INPUT_POST,
+            'gender',
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS
+        );
+    } else {
+        $genderErr = 'Płeć jest wymagana';
+    }
+    if(!empty($_POST['size'])) {
+        $selected = $_POST['size'];
+        $size = filter_input(
+            INPUT_POST,
+            'size',
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS
+        );
+    } else {
+        $sizeErr = 'Rozmiar stroju jest wymagany';
+    }
+
+    if (empty($_POST['elements'])) {
+        $elementsErr = 'Akcesoria są wymagane';
+    } else {
+        $elements = filter_input(
+            INPUT_POST,
+            'elements',
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS
+        );
+    }
+    if (empty($_POST['info'])) {
+        $infoErr = 'Informacje są wymagane';
+    } else {
+        $info = filter_input(
+            INPUT_POST,
+            'info',
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS
+        );
+    }
+
+
+
+
+
+
+
+
+
+    
+
+
+    if (empty($nameErr) && empty($typeErr) && empty($genderErr) && empty($sizeErr) && empty($elementsErr) && empty($infoErr)) {
+        $tsql = "INSERT INTO costumes (name, type, gender, size, elements, info, tagid) VALUES ('$name', '$type', '$gender', '$size', '$elements', '$info', '$tagid')";
+        $getResults = mysqli_query($link, $tsql);
+
+    }
+
 
 
 }
-
   
 
     
@@ -216,34 +229,34 @@ if (isset($_POST['submit'])) {
               ); ?>">
                 <div class="mb-3 text-lg-start">
                     <label for="name" class="form-label">Nazwa stroju:</label>
-                    <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź imię" >
+                    <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź nazwę stroju" >
                     <div class="invalid-feedback">
                     <?php echo $nameErr; ?>
                 </div>
                 <div class="mb-3 py-2 text-lg-start">
                     <label for="name" class="form-label">Kategoria stroju:</label>
-                    <select class="form-control form-control-lg w-85">
+                    <select class="form-control form-control-lg w-85 <?php echo !$typeErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="type" name="type">
                         <option value="" disabled selected>Wybierz kategorie stroju:</option>
-                        <option value="adults">Dorośli</option>
-                        <option value="kids">Dzieci</option>
+                        <option value="dorośli">Dorośli</option>
+                        <option value="dziecięcy">Dzieci</option>
                     </select>
                     <div class="invalid-feedback">
-                    <?php echo $surnameErr; ?>
+                    <?php echo $typeErr; ?>
                 </div>
                 <div class="mb-3 py-2 text-lg-start">
                     <label for="name" class="form-label">Płeć:</label>
-                    <select class="form-control form-control-lg w-85">
+                    <select class="form-control form-control-lg w-85  <?php echo !$genderErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="gender" name="gender">
                         <option value="" disabled selected>Wybierz płeć</option>
-                        <option value="men">Męski</option>
-                        <option value="women">Damski</option>
+                        <option value="męski">Męski</option>
+                        <option value="damski">Damski</option>
                         <option value="unisex">Unisex</option>
                     </select>
                     <div class="invalid-feedback">
-                    <?php echo $addressErr; ?>
+                    <?php echo $genderErr; ?>
                 </div>
                 <div class="mb-3 py-2 text-lg-start">
                     <label for="name" class="form-label">Rozmiar stroju:</label>
-                    <select class="form-control form-control-lg w-85">
+                    <select class="form-control form-control-lg w-85 <?php echo !$sizeErr ?: 'is-invalid'; ?>" name="size">
                         <option value="" disabled selected>Wybierz rozmiar stroju</option>
                         <option value="xs">XS</option>
                         <option value="s">S</option>
@@ -253,16 +266,16 @@ if (isset($_POST['submit'])) {
                         <option value="xxl">XXL</option>                    
                     </select>
                     <div class="invalid-feedback">
-                    <?php echo $numberErr; ?>
+                    <?php echo $sizeErr; ?>
                 </div>
                 <div class="mb-3 py-2 text-lg-start">
                     <label for="name" class="form-label">Akcesoria:</label>
-                    <textarea class="form-control form-control-lg w-85" id="elementsarea" rows="3" placeholder="Wpisz akcesoria do stroju"></textarea>                   
+                    <textarea class="form-control form-control-lg w-85 " name="elements" id="elements" rows="3" placeholder="Wpisz akcesoria"></textarea>                   
                      
                 </div>
                 <div class="mb-3 py-2 text-lg-start">
                     <label for="name" class="form-label">Informacje dodatkowe:</label>
-                    <textarea class="form-control form-control-lg w-85" id="infoarea" rows="3" placeholder="Wpisz informacje dodatkowe do stroju"></textarea>                    
+                    <textarea class="form-control form-control-lg w-85" name="info" id="info" rows="3" placeholder="Wpisz informacje dodatkowe "></textarea>                    
                     
                 </div>
             </div>
