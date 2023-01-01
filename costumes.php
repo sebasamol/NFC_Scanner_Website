@@ -185,7 +185,7 @@ if (isset($_POST['submit'])) {
                                         echo "<td>" . $row['size'] . "</td>";
                                         echo "<td>";
                                         echo '<a href="readcustomes.php?id='. $row['id'] .'" class="mr-3" title="Wyświetl" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                        echo '<a href="updateclients.php?id='. $row['id'] .'" class="mr-3" title="Edytuj" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                                        echo '<a href="updatecustomes.php?id='. $row['id'] .'" class="mr-3" title="Edytuj" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
                                         echo '<a href="deleteclients.php?id='. $row['id'] .'" title="Usuń" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                     echo "</td>";
 
