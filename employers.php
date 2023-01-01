@@ -10,8 +10,8 @@ $usernameErr = $passwordErr = $permissionErr = '';
 $link = mysqli_connect("dbnfc.mysql.database.azure.com","nfcadmin","Kret5871#","clients","3306");
 if (isset($_POST['submit'])) {
 
-    if (empty($_POST['name'])) {
-        $nameErr = 'Nazwa stroju jest wymagana';
+    if (empty($_POST['username'])) {
+        $nameErr = 'Imię pracownika jest wymagane';
     } else {
         $name = filter_input(
             INPUT_POST,
@@ -21,9 +21,9 @@ if (isset($_POST['submit'])) {
     }
     
     if (empty($_POST['password'])) {
-        $nameErr = 'Nazwa stroju jest wymagana';
+        $passwordErr = 'Hasło jest wymagane';
     } else {
-        $name = filter_input(
+        $password = filter_input(
             INPUT_POST,
             'password',
             FILTER_SANITIZE_FULL_SPECIAL_CHARS
@@ -33,13 +33,13 @@ if (isset($_POST['submit'])) {
     //Kategoria stroju//
     if(!empty($_POST['permission'])) {
       $selected = $_POST['permission'];
-      $gender = filter_input(
+      $permission = filter_input(
           INPUT_POST,
           'permission',
           FILTER_SANITIZE_FULL_SPECIAL_CHARS
       );
   } else {
-      $genderErr = 'Uprawnienia są wymagane';
+      $permissionErr = 'Wybór uprawnień jest wymagany';
   }
 
     
@@ -140,7 +140,7 @@ if (isset($_POST['submit'])) {
                                         echo "<td>" . $row['username'] . "</td>";
                                         
                                         echo "<td>";
-                                        echo '<a href="readcustomes.php?id='. $row['id'] .'" class="mr-3" title="Wyświetl" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                        echo '<a href="reademployers.php?id='. $row['id'] .'" class="mr-3" title="Wyświetl" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                         echo '<a href="updatecustomes.php?id='. $row['id'] .'" class="mr-3" title="Edytuj" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
                                         echo '<a href="deletecostumes.php?id='. $row['id'] .'" title="Usuń" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                     echo "</td>";
