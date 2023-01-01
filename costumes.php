@@ -184,7 +184,7 @@ if (isset($_POST['submit'])) {
                                         echo "<td>" . $row['gender'] . "</td>";
                                         echo "<td>" . $row['size'] . "</td>";
                                         echo "<td>";
-                                        echo '<a href="readclients.php?id='. $row['id'] .'" class="mr-3" title="Wyświetl" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                        echo '<a href="readcustomes.php?id='. $row['id'] .'" class="mr-3" title="Wyświetl" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                         echo '<a href="updateclients.php?id='. $row['id'] .'" class="mr-3" title="Edytuj" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
                                         echo '<a href="deleteclients.php?id='. $row['id'] .'" title="Usuń" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                     echo "</td>";
@@ -258,12 +258,12 @@ if (isset($_POST['submit'])) {
                     <label for="name" class="form-label">Rozmiar stroju:</label>
                     <select class="form-control form-control-lg w-85 <?php echo !$sizeErr ?: 'is-invalid'; ?>" name="size">
                         <option value="" disabled selected>Wybierz rozmiar stroju</option>
-                        <option value="xs">XS</option>
-                        <option value="s">S</option>
-                        <option value="m">M</option>
-                        <option value="l">L</option>
-                        <option value="xl">XL</option>
-                        <option value="xxl">XXL</option>                    
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>                    
                     </select>
                     <div class="invalid-feedback">
                     <?php echo $sizeErr; ?>
