@@ -198,7 +198,7 @@ if (isset($_POST['submit'])) {
       </table>
 
   </div>
-      <div class ="d-flex flex-row mt-3">
+  <div class ="d-flex flex-row mt-3">
         <div class="mt-3">
           <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal"><span class="bi bi-plus-circle"></span> Dodaj strój</button>
         </div>
@@ -214,62 +214,60 @@ if (isset($_POST['submit'])) {
               <form method="POST" action="<?php echo htmlspecialchars(
               $_SERVER['PHP_SELF']
               ); ?>">
-              <div class="mb-3 text-lg-start">
-                <label for="name" class="form-label">Nazwa stroju:</label>
-                <input type="text" class="form-control form-control-lg w-85 <?php echo !$nameErr ?: 'is-invalid'; ?> " id="name" name="name" placeholder="Wprowadź nazwę stroju" >
-                <div class="invalid-feedback">
-                <?php echo $nameErr; ?>
-              </div>
-              <div class="mb-3 py-2 text-lg-start">
-                <label for="type" class="form-label">Typ stroju</label>
-                <select class="form-control form-control-lg w-85">
-                    <option value=""disabled selected>Wybierz typ stroju</option>
-                    <option>Dorośli</option>
-                    <option>Dzieci</option>
-                </select>
-                <div class="invalid-feedback">
-                <?php echo $typeErr; ?>
-              </div>
-              
-              <div class="mb-3 py-2 text-lg-start">
-                <label for="name" class="form-label">Płeć:</label>
-                <select class="form-control form-control-lg w-85">
-                    <option value=""disabled selected>Wybierz płeć</option>
-                    <option>Damski</option>
-                    <option>Męski</option>
-                    <option>Unisex</option>
-                </select>
-                <div class="invalid-feedback">
-                <?php echo $addressErr; ?>
-              </div>
-              <div class="mb-3 py-2 text-lg-start">
-                <label for="name" class="form-label">Rozmiar stroju:</label>
-                <select class="form-control form-control-lg w-85">
-                    <option value=""disabled selected>Wybierz rozmiar stroju</option>
-                    <option>XS</option>
-                    <option>S</option>
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
-                    <option>XXL</option>
-                </select>
-                <div class="invalid-feedback">
-                <?php echo $numberErr; ?>
-              </div>
-              <div class="mb-3 py-2 text-lg-start">
-                <label for="name" class="form-label">Akcesoria:</label>
-                <textarea class="form-control form-control-lg w-85" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <div class="invalid-feedback">
-                <?php echo $numberErr; ?>
-              </div>
-              <div class="mb-3 py-2 text-lg-start">
-                <label for="name" class="form-label">Informacje dodatkowe:</label>
-                <textarea class="form-control form-control-lg w-85" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <div class="invalid-feedback">
-                <?php echo $numberErr; ?>
-              </div>
+                <div class="mb-3 text-lg-start">
+                    <label for="name" class="form-label">Nazwa stroju:</label>
+                    <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź imię" >
+                    <div class="invalid-feedback">
+                    <?php echo $nameErr; ?>
+                </div>
+                <div class="mb-3 py-2 text-lg-start">
+                    <label for="name" class="form-label">Kategoria stroju:</label>
+                    <select class="form-control form-control-lg w-85">
+                        <option value="" disabled selected>Wybierz kategorie stroju:</option>
+                        <option value="adults">Dorośli</option>
+                        <option value="kids">Dzieci</option>
+                    </select>
+                    <div class="invalid-feedback">
+                    <?php echo $surnameErr; ?>
+                </div>
+                <div class="mb-3 py-2 text-lg-start">
+                    <label for="name" class="form-label">Płeć:</label>
+                    <select class="form-control form-control-lg w-85">
+                        <option value="" disabled selected>Wybierz płeć</option>
+                        <option value="men">Męski</option>
+                        <option value="women">Damski</option>
+                        <option value="unisex">Unisex</option>
+                    </select>
+                    <div class="invalid-feedback">
+                    <?php echo $addressErr; ?>
+                </div>
+                <div class="mb-3 py-2 text-lg-start">
+                    <label for="name" class="form-label">Rozmiar stroju:</label>
+                    <select class="form-control form-control-lg w-85">
+                        <option value="" disabled selected>Wybierz rozmiar stroju</option>
+                        <option value="xs">XS</option>
+                        <option value="s">S</option>
+                        <option value="m">M</option>
+                        <option value="l">L</option>
+                        <option value="xl">XL</option>
+                        <option value="xxl">XXL</option>                    
+                    </select>
+                    <div class="invalid-feedback">
+                    <?php echo $numberErr; ?>
+                </div>
+                <div class="mb-3 py-2 text-lg-start">
+                    <label for="name" class="form-label">Akcesoria:</label>
+                    <textarea class="form-control form-control-lg w-85" id="elementsarea" rows="3" placeholder="Wpisz akcesoria do stroju"></textarea>                   
+                     
+                </div>
+                <div class="mb-3 py-2 text-lg-start">
+                    <label for="name" class="form-label">Informacje dodatkowe:</label>
+                    <textarea class="form-control form-control-lg w-85" id="infoarea" rows="3" placeholder="Wpisz informacje dodatkowe do stroju"></textarea>                    
+                    
+                </div>
             </div>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="bi bi-plus-circle"></span> Zeskanuj tag NFC</button>
+            <button type="button" class="btn btn-primary btn-block"><span class="bi bi-plus-circle"></span> Zeskanuj tag NFC</button>
+
             <div class="modal-footer justify-content-center">
               <input type="submit"  name="submit" value="Zapisz" class="btn btn-primary btn-block btn-lg">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
@@ -278,8 +276,7 @@ if (isset($_POST['submit'])) {
         </div>
       
       
-      
-  </div>
+    </div>
 </div>
 
 
