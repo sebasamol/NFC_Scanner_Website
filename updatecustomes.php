@@ -22,7 +22,12 @@ if (isset($_POST['submit'])) {
             FILTER_SANITIZE_FULL_SPECIAL_CHARS
         );
     }
-    
+    $input_rname = trim($_POST["name"]);
+    if(empty($input_username)){
+        $username_err = "Please enter an address.";     
+    } else{
+        $username = $input_username;
+    }
     //Kategoria stroju//
     if(!empty($_POST['type'])) {
         $selected = $_POST['type'];
@@ -77,7 +82,7 @@ if (isset($_POST['submit'])) {
     // Check input errors before inserting in database
     if(empty($nameErr) && empty($typeErr) && empty($genderErr) && empty($sizeErr) && empty($elementsErr) && empty($infoErr)){
         // Prepare an update statement
-        $sql = "UPDATE customes SET name=?, type=?, gender=?, size=?, elements=?, info=?, tagid=? WHERE id=?";
+        $sql = "UPDATE costumes SET name=?, type=?, gender=?, size=?, elements=?, info=?, tagid=? WHERE id=?";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -220,7 +225,7 @@ if (isset($_POST['submit'])) {
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="mb-3 text-lg-start">
                             <label for="name" class="form-label">Nazwa stroju:</label>
-                            <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź nazwę stroju" >
+                            <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" value="<?php echo $name; ?>" name="name" placeholder="Wprowadź nazwę stroju" >
                             <div class="invalid-feedback">
                              <?php echo $nameErr; ?>
                         </div>
