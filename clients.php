@@ -192,26 +192,24 @@ if (isset($_POST['submit'])) {
               <div class="mb-3 text-lg-start">
                 <label for="name" class="form-label">Imię:</label>
                 <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź imię" >
-                <div class="invalid-feedback">
-                <?php echo $nameErr; ?>
+                <span class="invalid-feedback"><?php echo $firstnameErr;?></span>
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Nazwisko:</label>
                 <input type="text" class="form-control <?php echo !$surnameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="surname" name="surname" placeholder="Wprowadź nazwisko" >
-                <div class="invalid-feedback">
-                <?php echo $surnameErr; ?>
+                <span class="invalid-feedback"><?php echo $surnameErr;?></span>
+                
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Adres zamieszkania:</label>
                 <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> <?php echo $address; ?> form-control-lg w-85 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
-                <span class="invalid-feedback"><?php echo $address_err;?></span>
+                <span class="invalid-feedback"><?php echo $addressErr;?></span>
                 
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Numer telefonu:</label>
                 <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
-                <div class="invalid-feedback">
-                <?php echo $numberErr; ?>
+                <span class="invalid-feedback"><?php echo $numberErr;?></span>
               </div>
             </div>
 

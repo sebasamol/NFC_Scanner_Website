@@ -1,7 +1,7 @@
 <?php
 $link = mysqli_connect("dbnfc.mysql.database.azure.com","nfcadmin","Kret5871#","clients","3306");
 $firstname = $lastname = $address = $number = "";
-$firstname_err = $lastname_err = $address_err = $number_err = "";
+$firstnameErr = $lastnameErr = $addressErr = $numberErr = "";
  
 // Processing form data when form is submitted
 if(isset($_POST["id"]) && !empty($_POST["id"])){
@@ -11,7 +11,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Validate name
     $input_firstname = trim($_POST["firstname"]);
     if(empty($input_firstname)){
-        $firstname_err = "Please enter an address.";     
+        $firstnameErr = "Please enter an address.";     
     } else{
         $firstname = $input_firstname;
     }
@@ -19,7 +19,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Validate address address
     $input_lastname = trim($_POST["lastname"]);
     if(empty($input_lastname)){
-        $lastname_err = "Please enter an address.";     
+        $lastnameErr = "Please enter an address.";     
     } else{
         $lastname = $input_lastname;
     }
@@ -27,19 +27,19 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Validate salary
     $input_address = trim($_POST["address"]);
     if(empty($input_address)){
-        $address_err = "Please enter an address.";     
+        $addressErr = "Please enter an address.";     
     } else{
         $address = $input_address;
     }
     $input_number = trim($_POST["number"]);
     if(empty($input_number)){
-        $number_err = "Please enter an address.";     
+        $numberErr = "Please enter an address.";     
     } else{
         $number = $input_number;
     }
     
     // Check input errors before inserting in database
-    if(empty($firstname_err) && empty($lastname_err) && empty($address_err) && empty($number_err) ){
+    if(empty($firstnameErr) && empty($lastnameErr) && empty($addressErr) && empty($numberErr) ){
         // Prepare an update statement
         $sql = "UPDATE clients SET firstname=?, lastname=?, address=?, number=? WHERE id=?";
          
@@ -182,26 +182,25 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <div class="mb-3 text-lg-start">
                          <label for="firstname" class="form-label">Imię:</label>
                             <input type="text" class="form-control <?php echo !$firstnameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="firstname" name="firstname" placeholder="Wprowadź imię" >
-                            <div class="invalid-feedback">
-                            <?php echo $firstnameErr; ?>
+                            <span class="invalid-feedback"><?php echo $firstnameErr;?></span>
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                             <label for="lastname" class="form-label">Nazwisko:</label>
                             <input type="text" class="form-control <?php echo !$lastameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="lastname" name="lastname" placeholder="Wprowadź nazwisko" >
-                            <div class="invalid-feedback">
-                            <?php echo $lastameErr; ?>
+                            <span class="invalid-feedback"><?php echo $lastnameErr;?></span>
+                            
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                          <label for="address" class="form-label">Adres zamieszkania:</label>
                          <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
-                        <div class="invalid-feedback">
-                            <?php echo $addressErr; ?>
+                         <span class="invalid-feedback"><?php echo $addressErr;?></span>
+                            
                         </div>
                          <div class="mb-3 py-2 text-lg-start">
                             <label for="name" class="form-label">Numer telefonu:</label>
                             <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
-                            <div class="invalid-feedback">
-                            <?php echo $numberErr; ?>
+                            <span class="invalid-feedback"><?php echo $numberErr;?></span>
+                            
                         </div>
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                         <input type="submit" class="btn btn-primary mt-2" value="Submit">

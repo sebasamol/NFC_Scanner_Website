@@ -4,7 +4,7 @@ $id = '';
 $username = '';
 $password = '';
 $permission = '';
-$username_err = $password_err = $permission_err = '';
+$usernameErr = $passwordErr = $permissionErr = '';
  
 // Processing form data when form is submitted
 if(isset($_POST["id"]) && !empty($_POST["id"])){
@@ -14,7 +14,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Validate name
     $input_username = trim($_POST["username"]);
     if(empty($input_username)){
-        $username_err = "Please enter an address.";     
+        $usernameErr = "Please enter an address.";     
     } else{
         $username = $input_username;
     }
@@ -22,7 +22,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Validate address address
     $input_password = trim($_POST["password"]);
     if(empty($input_password)){
-        $password_err = "Please enter an address.";     
+        $passwordErr = "Please enter an address.";     
     } else{
         $password = $input_password;
     }
@@ -30,7 +30,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Validate salary
     $input_permission = trim($_POST["permission"]);
     if(empty($input_permission)){
-        $permission_err = "Please enter an address.";     
+        $permissionErr = "Please enter an address.";     
     } else{
         
         $permission = $input_permission;
@@ -38,7 +38,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     
     
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($permission_err) ){
+    if(empty($usernameErr) && empty($passwordErr) && empty($permissionErr) ){
         // Prepare an update statement
         $sql = "UPDATE users SET username=?, password=?, permission=?  WHERE id=?";
          
@@ -179,27 +179,23 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     <h2 class="mt-5">Edytuj dane klienta</h2>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="mb-3 text-lg-start">
-                         <label for="firstname" class="form-label">Imię:</label>
-                            <input type="text" class="form-control <?php echo !$username_err ?: 'is-invalid'; ?> form-control-lg w-85 " id="username" name="username" placeholder="Wprowadź imię" value="<?php echo $username; ?>">
-                            <div class="invalid-feedback">
-                            <?php echo $username_err; ?>
+                            <label for="firstname" class="form-label">Imię:</label>
+                            <input type="text" class="form-control <?php echo !$usernameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="username" name="username" placeholder="Wprowadź imię" value="<?php echo $username; ?>">
+                            <span class="invalid-feedback"><?php echo $usernameErr;?></span>
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                             <label for="lastname" class="form-label">Nazwisko:</label>
-                            <input type="text" class="form-control <?php echo !$password_err ?: 'is-invalid'; ?> form-control-lg w-85 " id="password" name="password" placeholder="Wprowadź nazwisko" value="<?php echo $password; ?>" >
-                            <div class="invalid-feedback">
-                            <?php echo $password_err; ?>
+                            <input type="text" class="form-control <?php echo !$passwordErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="password" name="password" placeholder="Wprowadź nazwisko" value="<?php echo $password; ?>" >
+                            <span class="invalid-feedback"><?php echo $passwordErr;?></span>
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                             <label for="name" class="form-label">Uprawnienia pracownika:</label>
-                                <select class="form-control form-control-lg w-85  <?php echo !$permission_err ?: 'is-invalid'; ?> form-control-lg w-85 " id="permission" name="permission">
+                                <select class="form-control form-control-lg w-85  <?php echo !$permissionErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="permission" name="permission">
                                     <option value="" disabled selected>Wybierz uprawnienia</option>
-                                     <option value="admin">Administrator</option>
-                                        <option value="pracownik">Pracownik</option>
-                        
-                                 </select>
-                            <div class="invalid-feedback">
-                            <?php echo $permission_err; ?>
+                                    <option value="admin">Administrator</option>
+                                    <option value="pracownik">Pracownik</option>
+                                </select>
+                                <span class="invalid-feedback"><?php echo $permissionErr;?></span>
                         </div>
                          
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>

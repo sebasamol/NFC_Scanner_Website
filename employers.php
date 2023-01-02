@@ -142,7 +142,7 @@ if (isset($_POST['submit'])) {
                                         echo "<td>";
                                         echo '<a href="reademployers.php?id='. $row['id'] .'" class="mr-3" title="Wyświetl" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                         echo '<a href="updateemployers.php?id='. $row['id'] .'" class="mr-3" title="Edytuj" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                                        echo '<a href="deletecostumes.php?id='. $row['id'] .'" title="Usuń" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                        echo '<a href="deleteemployers.php?id='. $row['id'] .'" title="Usuń" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                     echo "</td>";
 
                                         
@@ -186,14 +186,13 @@ if (isset($_POST['submit'])) {
                   <div class="mb-3 text-lg-start">
                     <label for="name" class="form-label">Nazwa pracownika:</label>
                     <input type="text" class="form-control <?php echo !$usernameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="username" name="username" placeholder="Wprowadź nazwę pracownika" >
-                    <div class="invalid-feedback">
-                    <?php echo $nameErr; ?>
+                    <span class="invalid-feedback"><?php echo $usernameErr;?></span>
                   </div>
                   <div class="mb-3 py-2 text-lg-start">
                     <label for="name" class="form-label">Hasło:</label>
                     <input type="text" class="form-control <?php echo !$passwordErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="password" name="password" placeholder="Wprowadź hasło" >
-                    <div class="invalid-feedback">
-                    <?php echo $passwordErr; ?>
+                    <span class="invalid-feedback"><?php echo $passwordErr;?></span>
+                    
                   </div>
 
                   <div class="mb-3 py-2 text-lg-start">
@@ -204,8 +203,8 @@ if (isset($_POST['submit'])) {
                         <option value="pracownik">Pracownik</option>
                         
                     </select>
-                    <div class="invalid-feedback">
-                    <?php echo $permissionErr; ?>
+                    <span class="invalid-feedback"><?php echo $permissionErr;?></span>
+                    
                   </div>
                   
                 
