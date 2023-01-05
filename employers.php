@@ -210,12 +210,9 @@ if (isset($_POST['submit'])) {
                 
             </div>
 
-            <div class="modal-footer justify-content-center">
-              <input type="submit"  name="submit" value="Dodaj" class="btn btn-primary btn-block btn-lg">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            </div>
-          </div>
-        </div>
+            
+
+        
       
       
     </div>

@@ -181,24 +181,24 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="mb-3 text-lg-start">
                          <label for="firstname" class="form-label">Imię:</label>
-                            <input type="text" class="form-control <?php echo !$firstnameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="firstname" name="firstname" placeholder="Wprowadź imię" >
+                            <input type="text" class="form-control <?php echo !$firstnameErr ?: 'is-invalid'; ?> <?php echo $firstname; ?> form-control-lg w-85 " id="firstname" name="firstname" placeholder="Wprowadź imię" value="<?php echo $firstname; ?>" >
                             <span class="invalid-feedback"><?php echo $firstnameErr;?></span>
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                             <label for="lastname" class="form-label">Nazwisko:</label>
-                            <input type="text" class="form-control <?php echo !$lastameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="lastname" name="lastname" placeholder="Wprowadź nazwisko" >
+                            <input type="text" class="form-control <?php echo !$lastameErr ?: 'is-invalid'; ?>  form-control-lg w-85 " id="lastname" name="lastname" placeholder="Wprowadź nazwisko" value="<?php echo $lastname; ?>" >
                             <span class="invalid-feedback"><?php echo $lastnameErr;?></span>
                             
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                          <label for="address" class="form-label">Adres zamieszkania:</label>
-                         <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
+                         <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?>  form-control-lg w-85 " id="address" name="address" placeholder="Wprowadź adres zamieszkania"  value="<?php echo $address; ?>" >
                          <span class="invalid-feedback"><?php echo $addressErr;?></span>
                             
                         </div>
                          <div class="mb-3 py-2 text-lg-start">
                             <label for="name" class="form-label">Numer telefonu:</label>
-                            <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
+                            <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" value="<?php echo $number; ?>">
                             <span class="invalid-feedback"><?php echo $numberErr;?></span>
                             
                         </div>

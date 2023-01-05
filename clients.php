@@ -84,6 +84,7 @@ if (isset($_POST['submit'])) {
         <link rel="stylesheet" href="styles.css">
         
           
+
         <script src="script.js"></script> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -162,15 +163,14 @@ if (isset($_POST['submit'])) {
                         } else{
                             echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
                         }
-                    } else{
+                  } else{
                         echo "Oops! Something went wrong. Please try again later.";
                     }
  
-                    // Close connection
-                    mysqli_close($link);
+                      // Close connection
+                      mysqli_close($link);
                     
                     ?>
-      </table>
 
   </div>
       <div class ="d-flex flex-row mt-3">
@@ -191,8 +191,8 @@ if (isset($_POST['submit'])) {
               ); ?>">
               <div class="mb-3 text-lg-start">
                 <label for="name" class="form-label">Imię:</label>
-                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź imię" >
-                <span class="invalid-feedback"><?php echo $firstnameErr;?></span>
+                <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?>  form-control-lg w-85 " id="name" name="name" placeholder="Wprowadź imię" >
+                <span class="invalid-feedback"><?php echo $nameErr;?></span>
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Nazwisko:</label>
@@ -202,13 +202,13 @@ if (isset($_POST['submit'])) {
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Adres zamieszkania:</label>
-                <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?> <?php echo $address; ?> form-control-lg w-85 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
+                <input type="text" class="form-control <?php echo !$addressErr ?: 'is-invalid'; ?>  form-control-lg w-85 " id="address" name="address" placeholder="Wprowadź adres zamieszkania" >
                 <span class="invalid-feedback"><?php echo $addressErr;?></span>
                 
               </div>
               <div class="mb-3 py-2 text-lg-start">
                 <label for="name" class="form-label">Numer telefonu:</label>
-                <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
+                <input type="text" class="form-control <?php echo !$numberErr ?: 'is-invalid'; ?>  form-control-lg w-85 " id="number" name="number" placeholder="Wprowadź numer telefonu" >
                 <span class="invalid-feedback"><?php echo $numberErr;?></span>
               </div>
             </div>

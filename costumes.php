@@ -6,6 +6,7 @@ $size = '';
 $elements = '';
 $info = '';
 $tagid = '';
+$status = '';
 $nameErr = $typeErr = $genderErr = $elementsErr = $infoErr = $tagidErr =  '';
 
 // PHP Data Objects(PDO) Sample Code:
@@ -86,7 +87,7 @@ if (isset($_POST['submit'])) {
 
 
     if (empty($nameErr) && empty($typeErr) && empty($genderErr) && empty($sizeErr) && empty($elementsErr) && empty($infoErr)) {
-        $tsql = "INSERT INTO costumes (name, type, gender, size, elements, info, tagid) VALUES ('$name', '$type', '$gender', '$size', '$elements', '$info', '$tagid')";
+        $tsql = "INSERT INTO costumes (name, type, gender, size, elements, info, tagid, status) VALUES ('$name', '$type', '$gender', '$size', '$elements', '$info', '$tagid', '$status')";
         $getResults = mysqli_query($link, $tsql);
 
     }
@@ -172,6 +173,7 @@ if (isset($_POST['submit'])) {
                                         echo "<th>Typ stroju</th>";
                                         echo "<th>Płeć</th>";
                                         echo "<th>Rozmiar stroju</th>";
+                                        echo "<th>Status</th>";
                                         echo "<th>Opcje</th>";
                                         
                                     echo "</tr>";
@@ -183,6 +185,7 @@ if (isset($_POST['submit'])) {
                                         echo "<td>" . $row['type'] . "</td>";
                                         echo "<td>" . $row['gender'] . "</td>";
                                         echo "<td>" . $row['size'] . "</td>";
+                                        echo "<td>" . $row['status'] . "</td>";
                                         echo "<td>";
                                         echo '<a href="readcustomes.php?id='. $row['id'] .'" class="mr-3" title="Wyświetl" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                         echo '<a href="updatecustomes.php?id='. $row['id'] .'" class="mr-3" title="Edytuj" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';

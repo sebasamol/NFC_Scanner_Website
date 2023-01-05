@@ -225,35 +225,35 @@ if (isset($_POST['submit'])) {
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="mb-3 text-lg-start">
                             <label for="name" class="form-label">Nazwa stroju:</label>
-                            <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name" value="<?php echo $name; ?>" name="name" placeholder="Wprowadź nazwę stroju" >
+                            <input type="text" class="form-control <?php echo !$nameErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="name"  name="name" placeholder="Wprowadź nazwę stroju" value="<?php echo $name; ?>">
                             <div class="invalid-feedback">
                              <?php echo $nameErr; ?>
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                              <label for="name" class="form-label">Kategoria stroju:</label>
-                            <select class="form-control form-control-lg w-85 <?php echo !$typeErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="type" name="type">
-                                <option value="" disabled selected>Wybierz kategorie stroju:</option>
+                            <select class="form-control form-control-lg w-85 <?php echo !$typeErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="type" name="type" value="<?php echo $type; ?>">
+                                <option value="" disabled selected><?php echo $type; ?></option>
                                 <option value="dorośli">Dorośli</option>
                                 <option value="dziecięcy">Dzieci</option>
                             </select>
-                            <div class="invalid-feedback">
-                            <?php echo $typeErr; ?>
+                            <span class="invalid-feedback"><?php echo $typeErr;?></span>
+                            
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                             <label for="name" class="form-label">Płeć:</label>
                             <select class="form-control form-control-lg w-85  <?php echo !$genderErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="gender" name="gender">
-                                <option value="" disabled selected>Wybierz płeć</option>
+                                <option value="" disabled selected><?php echo $gender; ?></option>
                                 <option value="męski">Męski</option>
                                 <option value="damski">Damski</option>
                                 <option value="unisex">Unisex</option>
                             </select>
-                            <div class="invalid-feedback">
-                             <?php echo $genderErr; ?>
+                            <span class="invalid-feedback"><?php echo $genderErr;?></span>
+                             
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                             <label for="name" class="form-label">Rozmiar stroju:</label>
                             <select class="form-control form-control-lg w-85 <?php echo !$sizeErr ?: 'is-invalid'; ?>" name="size">
-                                <option value="" disabled selected>Wybierz rozmiar stroju</option>
+                                <option value="" disabled selected><?php echo $size; ?></option>
                                 <option value="XS">XS</option>
                                 <option value="S">S</option>
                                 <option value="M">M</option>
@@ -261,17 +261,17 @@ if (isset($_POST['submit'])) {
                                 <option value="XL">XL</option>
                                 <option value="XXL">XXL</option>                    
                                  </select>
-                            <div class="invalid-feedback">
-                            <?php echo $sizeErr; ?>
+                                <span class="invalid-feedback"><?php echo $sizeErr;?></span>
+                            
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                             <label for="name" class="form-label">Akcesoria:</label>
-                            <textarea class="form-control form-control-lg w-85 " name="elements" id="elements" rows="3" placeholder="Wpisz akcesoria"></textarea>                   
+                            <textarea class="form-control form-control-lg w-85 " name="elements" id="elements" rows="3" placeholder="Wpisz akcesoria" ><?php echo $elements; ?></textarea>                   
                      
                         </div>
                         <div class="mb-3 py-2 text-lg-start">
                             <label for="name" class="form-label">Informacje dodatkowe:</label>
-                            <textarea class="form-control form-control-lg w-85" name="info" id="info" rows="3" placeholder="Wpisz informacje dodatkowe "></textarea>                    
+                            <textarea class="form-control form-control-lg w-85" name="info" id="info" rows="3" placeholder="Wpisz informacje dodatkowe "><?php echo $info; ?></textarea>                    
                     
                         </div>
                         </div>

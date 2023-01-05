@@ -191,16 +191,16 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <div class="mb-3 py-2 text-lg-start">
                             <label for="name" class="form-label">Uprawnienia pracownika:</label>
                                 <select class="form-control form-control-lg w-85  <?php echo !$permissionErr ?: 'is-invalid'; ?> form-control-lg w-85 " id="permission" name="permission">
-                                    <option value="" disabled selected>Wybierz uprawnienia</option>
-                                    <option value="admin">Administrator</option>
-                                    <option value="pracownik">Pracownik</option>
+                                    <option value="" disabled selected><?php echo $permission; ?></option>
+                                    <option value="Administrator">Administrator</option>
+                                    <option value="Pracownik">Pracownik</option>
                                 </select>
                                 <span class="invalid-feedback"><?php echo $permissionErr;?></span>
                         </div>
                          
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-                        <input type="submit" class="btn btn-primary mt-2" value="Submit">
-                        <a href="employers.php" class="btn btn-secondary ml-2 mt-2">Cancel</a>
+                        <input type="submit" class="btn btn-primary mt-2" value="Zapisz zmiany">
+                        <a href="employers.php" class="btn btn-secondary ml-2 mt-2">Anuluj</a>
                     </form>
                 </div>
             </div>        

@@ -12,6 +12,7 @@ body{
     font-family: 'Raleway', sans-serif;
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
+    overflow: auto;
 }
 
 /*nawigacja*/
